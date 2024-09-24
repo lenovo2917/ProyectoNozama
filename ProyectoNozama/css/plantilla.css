@@ -1,0 +1,69 @@
+/* Establecer el fondo blanco */
+body {
+    background-color: #ffffff; /* Fondo blanco */
+    color:#071952; /* Texto general */
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    background-color: #ffffff; /* Fondo blanco */
+}
+
+.navbar-brand, .navbar .nav-link {
+    color:#071952 !important; /* Títulos y texto de la barra de navegación */
+}
+
+/* Estilo para los botones */
+.btn-outline-primary {
+    background-color: #9AC8CD; /* Color del botón */
+    border-color: #9AC8CD; /* Borde del botón */
+    color: #ffffff; /* Texto del botón */
+}
+
+.btn-outline-primary:hover {
+    background-color: #E1F7F5; /* Color del botón al colocar el puntero */
+    border-color: #E1F7F5; 
+    color: #1E0342; /* Texto del botón */
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #0E46A3; /* Color de los links */
+}
+
+a:hover {
+    color: #9AC8CD; /* Color de los links al pasar el mouse */
+}
+
+/* Estilo para los iconos */
+.bi {
+    color: #0E46A3; /* Color de los iconos */
+}
+
+/* Estilo para los subtítulos */
+.submenu .nav-link {
+    color: #0E46A3; /* Subtítulos */
+}
+
+.submenu .nav-link:hover {
+    color: #9AC8CD; /* Subtítulos al pasar el mouse */
+}
+
+/* Estilo del formulario */
+.form-control {
+    border-color: #071952; /* Color del borde del formulario */
+}
+
+.form-control::placeholder {
+    color:#071952; /* Color del texto placeholder */
+}
+
+
+.navbar, footer {
+    box-shadow: 0 2px 3px rgba(78, 78, 78, 0.1); /* Sombra suave */
+}
+
+
+a, .btn-outline-primary, .submenu .nav-link {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
