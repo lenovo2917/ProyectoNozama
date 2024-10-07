@@ -2,8 +2,8 @@
 <main class="container"> 
     <div class="row">
         <div class="col">
-            <!-- AQUI COLOCAS TU CODIGO 1111111 -->
-             session_set_save_handler;
+            <!-- AQUI COLOCAS TU CODIGO gaaaaaa -->
+             
         </div>
     </div>
 </main>
