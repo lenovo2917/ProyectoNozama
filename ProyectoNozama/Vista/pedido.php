@@ -1,5 +1,5 @@
 <?php 
-include '../header.php'; 
+include '../../ProyectoNozama/header.php'; 
 require '../Controlador/InfoPedido.php';
 ?>
 <main class="container"> 

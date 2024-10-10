@@ -5,7 +5,7 @@ USE Nozama;
 
 -- crear el usuario, descomentarlo
 -- Usuarios
--- CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
 
 -- Permisos
  GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON Nozama.* TO 'rogelio'@'localhost';
@@ -56,7 +56,7 @@ CREATE TABLE Cliente (
 	CONSTRAINT ck_Rol CHECK (Rol IN (0,1,3))
 );
 
-
+select * from Cliente;
 
 -- Tabla Forma_Pago
 CREATE TABLE Forma_Pago (
@@ -136,57 +136,13 @@ END;
 //
 
 
-select * from Categoria;
 
-Insert into Categoria (Id,nombre) values (1,"Bocinas");
-Insert into Categoria (Id,nombre) values (2,"Cargadores");
-Insert into Categoria (Id,nombre) values (3,"Cables");
-Insert into Categoria (Id,nombre) values (4,"Baterias");
-Insert into Categoria (Id,nombre) values (5,"Audifonos");
-Insert into Categoria (Id,nombre) values (6,"Adaptadores");
+
 
 
 select * from Productos;
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Bocina Portátil', 230, '7 HRS, Bluetooth, Puerto de carga, SD Slot, USB Slot, AUX', 1, 100, '2024-10-01', 1);
 
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Audífonos Sony Diadema BT', 380, 'Diadema Bluetooth, malla tejida, almohadillas de espuma viscoelástica', 1, 150, '2024-10-01', 5);
 
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cable de Datos USB-C', 85, '1M, 5A', 1, 300, '2024-10-01', 3);
 
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cable C-C', 85, 'Entrada C - Salida C, 2M, 3A', 1, 250, '2024-10-01', 3);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Combo Cubo + Cable', 55, 'USB-C', 1, 200, '2024-10-01', 2);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cable iPhone', 45, '2M, C-Lightning', 1, 300, '2024-10-01', 3);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cable iPhone', 40, '1M, C-Lightning', 1, 300, '2024-10-01', 3);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Combo iPhone', 180, 'Carga rápida 20W, Cubo + Cable (C-Lightning)', 1, 100, '2024-10-01', 2);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cubo Carga Rápida', 120, '35W, 2 Puertos Tipo C', 1, 150, '2024-10-01', 2);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Combo iPhone', 85, 'Carga normal 5W, Cubo + Cable (USB-Lightning)', 1, 150, '2024-10-01', 2);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Audífono Bluetooth AUT119', 85, 'Alcance inalámbrico de 10 m, micrófono incorporado, uso apto para deporte', 1, 150, '2024-10-01', 5);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Audífono Bluetooth AUT203', 85, 'Duración de la batería: 5 horas, batería de polímero de litio de 30mAh', 1, 150, '2024-10-01', 5);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cargador Huawei Tipo C', 75, 'Cargador de pared original Huawei, voltaje de salida 2.0A, carga rápida', 1, 200, '2024-10-01', 2);
-
-INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
-VALUES ('Cubo Samsung 35W Tipo C', 130, 'Super rápida, no incluye cable, dispositivos móviles compatibles: Huawei, etc.', 1, 150, '2024-10-01', 2);
 
 
