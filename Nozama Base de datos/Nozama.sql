@@ -138,7 +138,17 @@ END;
 
 
 
-hols esta es una prueba
+INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Ramiro Gutierrez', 'Av. Siempre Viva 742', '5512345678', 1);
+INSERT INTO Cliente (Id_dato, Correo, Contrasena, Rol) 
+VALUES (2, 'juan.perez@example.com', 'JuanP123', 0); -- Asegúrate de que el Id_dato exista en Datos_Cliente
+INSERT INTO Forma_Pago (Banco, No_Tarjeta, Fecha_Vencimiento, CVV, Nombre_beneficiario) 
+VALUES ('Banco Ejemplo', '1234567812345678', '12/25', '123', 'Ramiro Gutierrez');
+INSERT INTO Envio (Tipo, DireccionEnvio, CP, Telefono, Estado) 
+VALUES ('Express', 'Av. Siempre Viva 742', '12345', '5512345678', 'CDMX');
+INSERT INTO Carrito (Id_Producto, Cantidad, precio, Id_FormaPago, Id_Envio) 
+VALUES (1, 2, 460, 1, 1); -- Asegúrate de que los Id_Producto, Id_FormaPago, e Id_Envio existan.
+INSERT INTO Pedido (Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (460, 2, 2, 1); -- Asegúrate de que Id_Cliente e Id_Carrito existan.
 
 select * from Productos;
 
