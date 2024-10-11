@@ -138,7 +138,7 @@ END;
 
 
 
-INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Ramiro Gutierrez', 'Av. Siempre Viva 742', '5512345678', 1);
+INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Carlo Gutierrez', 'Av. Siempre Viva 742', '5512345678', 1);
 INSERT INTO Cliente (Id_dato, Correo, Contrasena, Rol) 
 VALUES (2, 'juan.perez@example.com', 'JuanP123', 0); -- Asegúrate de que el Id_dato exista en Datos_Cliente
 INSERT INTO Forma_Pago (Banco, No_Tarjeta, Fecha_Vencimiento, CVV, Nombre_beneficiario) 
