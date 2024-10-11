@@ -138,8 +138,6 @@ END;
 
 
 
-hols esta es una prueba
-
 select * from Productos;
 
 
