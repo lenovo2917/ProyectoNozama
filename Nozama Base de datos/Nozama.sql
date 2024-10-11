@@ -5,7 +5,7 @@ USE Nozama;
 
 -- crear el usuario, descomentarlo
 -- Usuarios
-CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+-- CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
 
 -- Permisos
  GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON Nozama.* TO 'rogelio'@'localhost';
@@ -32,6 +32,7 @@ CREATE TABLE Productos (
     CONSTRAINT ck_Disponible CHECK (disponible IN (0,1))
 );
 
+describe pedido;
 -- Añadir columnas adicionales a la tabla Productos, si faltaran
 
 -- Tabla Datos_Cliente
@@ -56,7 +57,9 @@ CREATE TABLE Cliente (
 	CONSTRAINT ck_Rol CHECK (Rol IN (0,1,3))
 );
 
-select * from Cliente;
+-- Rol 0-Cliente, 1-Empleado, 3-Administrador
+
+
 
 -- Tabla Forma_Pago
 CREATE TABLE Forma_Pago (
@@ -107,7 +110,7 @@ CREATE TABLE Pedido (
     FOREIGN KEY (Id_Cliente) REFERENCES Cliente(Id_Cliente),
     FOREIGN KEY (Id_Carrito) REFERENCES Carrito(Id_Carrito),
 	CONSTRAINT ck_Estado CHECK (estado IN (0,1,3))
-);
+); -- Estado 0:Preparacion/pendiente, 1:En Camino, 3:Finalizado
 
 -- Trigger para validar el precio de Productos
 DELIMITER //
@@ -136,23 +139,96 @@ END;
 //
 
 
+select * from Categoria;
 
+Insert into Categoria (Id,nombre) values (1,"Bocinas");
+Insert into Categoria (Id,nombre) values (2,"Cargadores");
+Insert into Categoria (Id,nombre) values (3,"Cables");
+Insert into Categoria (Id,nombre) values (4,"Baterias");
+Insert into Categoria (Id,nombre) values (5,"Audifonos");
+Insert into Categoria (Id,nombre) values (6,"Adaptadores");
 
-INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Carlo Gutierrez', 'Av. Siempre Viva 742', '5512345678', 1);
-INSERT INTO Cliente (Id_dato, Correo, Contrasena, Rol) 
-VALUES (2, 'juan.perez@example.com', 'JuanP123', 0); -- Asegúrate de que el Id_dato exista en Datos_Cliente
-INSERT INTO Forma_Pago (Banco, No_Tarjeta, Fecha_Vencimiento, CVV, Nombre_beneficiario) 
-VALUES ('Banco Ejemplo', '1234567812345678', '12/25', '123', 'Ramiro Gutierrez');
-INSERT INTO Envio (Tipo, DireccionEnvio, CP, Telefono, Estado) 
-VALUES ('Express', 'Av. Siempre Viva 742', '12345', '5512345678', 'CDMX');
-INSERT INTO Carrito (Id_Producto, Cantidad, precio, Id_FormaPago, Id_Envio) 
-VALUES (1, 2, 460, 1, 1); -- Asegúrate de que los Id_Producto, Id_FormaPago, e Id_Envio existan.
-INSERT INTO Pedido (Total, Id_Cliente, Id_Carrito, estado) 
-VALUES (460, 2, 2, 1); -- Asegúrate de que Id_Cliente e Id_Carrito existan.
 
 select * from Productos;
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Bocina Portátil', 230, '7 HRS, Bluetooth, Puerto de carga, SD Slot, USB Slot, AUX', 1, 100, '2024-10-01', 1);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Audífonos Sony Diadema BT', 380, 'Diadema Bluetooth, malla tejida, almohadillas de espuma viscoelástica', 1, 150, '2024-10-01', 5);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cable de Datos USB-C', 85, '1M, 5A', 1, 300, '2024-10-01', 3);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cable C-C', 85, 'Entrada C - Salida C, 2M, 3A', 1, 250, '2024-10-01', 3);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Combo Cubo + Cable', 55, 'USB-C', 1, 200, '2024-10-01', 2);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cable iPhone', 45, '2M, C-Lightning', 1, 300, '2024-10-01', 3);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cable iPhone', 40, '1M, C-Lightning', 1, 300, '2024-10-01', 3);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Combo iPhone', 180, 'Carga rápida 20W, Cubo + Cable (C-Lightning)', 1, 100, '2024-10-01', 2);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cubo Carga Rápida', 120, '35W, 2 Puertos Tipo C', 1, 150, '2024-10-01', 2);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Combo iPhone', 85, 'Carga normal 5W, Cubo + Cable (USB-Lightning)', 1, 150, '2024-10-01', 2);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Audífono Bluetooth AUT119', 85, 'Alcance inalámbrico de 10 m, micrófono incorporado, uso apto para deporte', 1, 150, '2024-10-01', 5);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Audífono Bluetooth AUT203', 85, 'Duración de la batería: 5 horas, batería de polímero de litio de 30mAh', 1, 150, '2024-10-01', 5);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cargador Huawei Tipo C', 75, 'Cargador de pared original Huawei, voltaje de salida 2.0A, carga rápida', 1, 200, '2024-10-01', 2);
+
+INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
+VALUES ('Cubo Samsung 35W Tipo C', 130, 'Super rápida, no incluye cable, dispositivos móviles compatibles: Huawei, etc.', 1, 150, '2024-10-01', 2);
+
+
+-- Primer cliente
+INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Juan Pérez', 'Jojutla Morelos 62909', '7773933706',1);
+
+-- Insertar cliente
+INSERT INTO Cliente (Id_dato, Correo, Rol, Contrasena) VALUES (1, 'juan.perez@gmail.com', 0, 'juan');
+
+-- Insertar envio
+-- Inserción en la tabla Envio
+INSERT INTO Envio (Tipo, DireccionEnvio, CP, Telefono, Estado) VALUES ('Express', 'Calle Ejemplo 123', '12345', '5551234567', 'En ruta');
+-- Hacer un altertable agregando Cliente.ID para referenciar envio al cliente.
+
+-- Insercion Pago
+-- Inserción en la tabla Forma_Pago
+INSERT INTO Forma_Pago (Banco, No_Tarjeta, Fecha_Vencimiento, CVV, Nombre_beneficiario) 
+VALUES ('BBVA Bancomer', '1234567812345678', '12/25', '123', 'Juan Pérez');
+-- Hacer un altertable agregando Cliente.ID para referenciar la forma de pago al cliente.
+
+-- Insercion Carrito
+-- Inserción en la tabla Carrito
+INSERT INTO Carrito (Id_Producto, Cantidad, Precio, Id_FormaPago, Id_Envio) VALUES (1, 1, 230, 1, LAST_INSERT_ID()); 
+
+Select * from Cliente;
+
+-- Inserción en la tabla Pedido
+INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (CURRENT_TIMESTAMP, 200, 1, LAST_INSERT_ID(), 0);
+
+INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (CURRENT_TIMESTAMP, 222222, 1, LAST_INSERT_ID(), 1);
+
+INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (CURRENT_TIMESTAMP, 333333, 1, 1, 3);
 
 
 
 
+--  COnsultar
+Select * from Pedido where Id_Cliente=1;
 
