@@ -138,8 +138,6 @@ END;
 
 
 
-<<<<<<< HEAD
-=======
 INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Ramiro Gutierrez', 'Av. Siempre Viva 742', '5512345678', 1);
 INSERT INTO Cliente (Id_dato, Correo, Contrasena, Rol) 
 VALUES (2, 'juan.perez@example.com', 'JuanP123', 0); -- Asegúrate de que el Id_dato exista en Datos_Cliente
@@ -152,7 +150,6 @@ VALUES (1, 2, 460, 1, 1); -- Asegúrate de que los Id_Producto, Id_FormaPago, e 
 INSERT INTO Pedido (Total, Id_Cliente, Id_Carrito, estado) 
 VALUES (460, 2, 2, 1); -- Asegúrate de que Id_Cliente e Id_Carrito existan.
 
->>>>>>> a5a6f16eb0d61749c5499f11fac2fde7a0d3d89c
 select * from Productos;
 
 
