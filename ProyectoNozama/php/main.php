@@ -77,7 +77,8 @@
                     </div>
 
                     <div class="carousel-inner">
-                        <?php include './tajetas_bocinas.php'; ?>
+                        <?php include './tarjetas_bocinas.php'; ?>
+                        <?php include './; ?>
                     </div>
                 </div>
             </section>
