@@ -1,7 +1,7 @@
-/* Estilos personalizados para las imágenes del carrusel */
 .carousel-inner img {
-    max-height: 500px;
-    object-fit: cover;
+    height: auto;         /* Permite que la altura se ajuste automáticamente */
+    width: 100%;          /* Ocupa todo el ancho del contenedor */
+    object-fit: cover;    /* Mantiene la proporción de la imagen */
 }
 
 .card {
@@ -17,8 +17,6 @@
 .rating i {
     margin-right: 4px;
 }
-
-
 
 .category-section {
     padding-top: 50px; /* Ajusta según el tamaño de tu header */

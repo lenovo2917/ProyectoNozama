@@ -3,7 +3,7 @@
 include 'conexion.php'; 
 
 // Consulta para obtener los productos disponibles
-$sql = "SELECT Nombre, descripcion, precio, cantidad FROM Productos WHERE disponible = 1";
+$sql = "SELECT Nombre, descripcion, precio, cantidad, imagen FROM Productos WHERE disponible = 1";
 $resultado = $conn->query($sql);
 
 if ($resultado->num_rows > 0) {
@@ -12,7 +12,7 @@ if ($resultado->num_rows > 0) {
     // Primer producto se marca como "active"
     $firstItem = true;
 
-    while($producto = $resultado->fetch_assoc()) {
+    while ($producto = $resultado->fetch_assoc()) {
         if ($firstItem) {
             echo '<div class="carousel-item active">';
             $firstItem = false;
@@ -21,10 +21,14 @@ if ($resultado->num_rows > 0) {
         }
 
         echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
-        
+
+        // Convertir la imagen BLOB a base64
+        $imagenBase64 = base64_encode($producto['imagen']);
+        $imgSrc = 'data:image/jpeg;base64,' . $imagenBase64; // Cambia "jpeg" por el tipo correcto si es diferente
+
         echo '<div class="col">
                 <div class="card h-100">
-                    <img src="https://via.placeholder.com/500x300?text=' . urlencode($producto["Nombre"]) . '" class="card-img-top" alt="' . $producto["Nombre"] . '">
+                    <img src="' . $imgSrc . '" class="card-img-top" alt="' . $producto["Nombre"] . '">
                     <div class="card-body">
                         <h5 class="card-title">' . $producto["Nombre"] . '</h5>
                         <p class="card-text">' . $producto["descripcion"] . '</p>
@@ -45,4 +49,3 @@ if ($resultado->num_rows > 0) {
 
 $conn->close();
 ?>
-
