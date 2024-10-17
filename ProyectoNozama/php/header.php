@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link position-relative" href="#">
+                            <a class="nav-link position-relative" href="carrito.php">
                                 <i class="bi bi-cart4 fs-5"></i> Carrito
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     0
