@@ -5,7 +5,7 @@ USE Nozama;
 
 -- crear el usuario, descomentarlo
 -- Usuarios
--- CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
 
 -- Permisos
  GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON Nozama.* TO 'rogelio'@'localhost';
