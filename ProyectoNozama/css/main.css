@@ -1,0 +1,23 @@
+.carousel-inner img {
+    height: auto;         /* Permite que la altura se ajuste automáticamente */
+    width: 100%;          /* Ocupa todo el ancho del contenedor */
+    object-fit: cover;    /* Mantiene la proporción de la imagen */
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rating i {
+    margin-right: 4px;
+}
+
+.category-section {
+    padding-top: 50px; /* Ajusta según el tamaño de tu header */
+}
