@@ -102,15 +102,75 @@
     <!--Main o contenido-->
     <main class="container">
     <div class="row">
-        <!-- CREO 4 RECUADROS PARA COLOCAR MI INFORMACIÓN -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Aqui voy a añadir</h5>
-                    <p class="card-text">Aquí puedes agregar información o contenido.</p>
-                </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Añadir Producto</h5>
+
+            <!-- Campo para el nombre -->
+            <div class="form-group mb-3">
+                <label for="nombreProducto">Nombre:</label>
+                <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
+            </div>
+
+            <!-- Campo para la descripción -->
+            <div class="form-group mb-3">
+                <label for="descripcionProducto">Descripción:</label>
+                <textarea class="form-control" id="descripcionProducto" rows="3" placeholder="Ingresa la descripción"></textarea>
+            </div>
+
+            <!-- Campo para el precio -->
+            <div class="form-group mb-3">
+                <label for="precioProducto">Precio:</label>
+                <input type="number" class="form-control" id="precioProducto" placeholder="Ingresa el precio">
+            </div>
+
+            <!-- Campo para la disponibilidad -->
+            <div class="form-group mb-3">
+                <label for="disponibilidadProducto">Disponibilidad:</label>
+                <input type="number" class="form-control" id="disponibilidadProducto" placeholder="Unidades disponibles">
+            </div>
+
+            <!-- Campo para la fecha de creación -->
+            <div class="form-group mb-3">
+                <label for="fechaCreacionProducto">Fecha de Creación:</label>
+                <input type="date" class="form-control" id="fechaCreacionProducto">
+            </div>
+
+            <!-- Campo para la imagen -->
+            <div class="form-group mb-3">
+                <label for="imagenProducto">Imagen:</label>
+                <input type="file" class="form-control" id="imagenProducto">
+            </div>
+
+            <!-- Botones -->
+            <div class="row">
+            <div class="col-6 mb-2">
+                <button class="btn btn-primary w-100">Bocinas</button>
+            </div>
+            <div class="col-6 mb-2">
+                <button class="btn btn-primary w-100">Cargadores</button>
+            </div>
+            <div class="col-6 mb-2">
+                <button class="btn btn-primary w-100">Cables</button>
+            </div>
+            <div class="col-6 mb-2">
+                <button class="btn btn-primary w-100">Baterías</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary w-100">Audífonos</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary w-100">Adaptadores</button>
             </div>
         </div>
+
+
+
+        </div>
+    </div>
+</div>
+
 
         <!-- Segundo cuadro -->
         <div class="col-lg-4 col-md-6 mb-4">
