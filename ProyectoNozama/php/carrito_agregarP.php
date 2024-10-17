@@ -1,44 +1,52 @@
 <?php
 session_start();
 
-// Asegurarse de que el índice y la cantidad estén establecidos
-if (isset($_POST['index']) && isset($_POST['cantidad_agregar'])) {
-    $index = $_POST['index'];
-    $cantidadAgregar = intval($_POST['cantidad_agregar']);
+// Simulación de datos de productos (en producción, deberías obtener esto de una base de datos)
+$productos_disponibles = [
+    1 => [
+        'id' => 1,
+        'nombre' => 'Producto 1',
+        'descripcion' => 'Descripción del producto 1',
+        'precio' => 100.00,
+        'imagen' => 'producto1.jpg'
+    ],
+    2 => [
+        'id' => 2,
+        'nombre' => 'Producto 2',
+        'descripcion' => 'Descripción del producto 2',
+        'precio' => 200.00,
+        'imagen' => 'producto2.jpg'
+    ]
+    // Añade más productos según sea necesario
+];
 
-    // Asegurarse de que el carrito exista
+// Verificar si se pasó el ID del producto
+if (isset($_GET['id']) && isset($productos_disponibles[$_GET['id']])) {
+    $id = (int)$_GET['id'];
+    $producto = $productos_disponibles[$id];
+    $producto['cantidad'] = 1; // Inicializar la cantidad
+
+    // Inicializar el carrito si no existe
     if (!isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = [];
     }
 
     // Verificar si el producto ya está en el carrito
-    if (isset($_SESSION['carrito'][$index])) {
-        // Si el producto ya existe, solo se actualiza la cantidad
-        $_SESSION['carrito'][$index]['cantidad'] += $cantidadAgregar;
-    } else {
-        // Si el producto no está en el carrito, se agrega
-        // Asumiendo que tienes un array de productos originales desde donde obtienes los datos
-        // Aquí deberías obtener el producto completo basado en el index o el id
-        $producto = obtenerProductoPorIndex($index); // Implementa esta función según tu lógica
-        $producto['cantidad'] = $cantidadAgregar; // Establece la cantidad inicial
-        $_SESSION['carrito'][$index] = $producto; // Agregar producto al carrito
+    $encontrado = false;
+    foreach ($_SESSION['carrito'] as &$item) {
+        if ($item['id'] === $producto['id']) {
+            $item['cantidad'] += 1;
+            $encontrado = true;
+            break;
+        }
+    }
+
+    // Si el producto no está en el carrito, añadirlo
+    if (!$encontrado) {
+        $_SESSION['carrito'][] = $producto;
     }
 }
 
-// Redirigir de vuelta al carrito
-header("Location: carrito.php");
-exit();
-
-// Función para obtener el producto por index (debes implementarla según tu lógica)
-function obtenerProductoPorIndex($index) {
-    // Aquí deberías tener acceso a la lista de productos, 
-    // esto puede ser desde una base de datos o un array en tu código
-    // Por ejemplo:
-    $productos = [
-        // Ejemplo de array de productos
-        // 'index' => ['nombre' => 'Producto 1', 'precio' => 100.00, 'descripcion' => 'Descripción', 'imagen' => 'imagen.jpg']
-    ];
-    
-    return $productos[$index]; // Asegúrate de que el index sea válido
-}
-?>
+// Redirigir al carrito
+header('Location: carrito.php');
+exit;

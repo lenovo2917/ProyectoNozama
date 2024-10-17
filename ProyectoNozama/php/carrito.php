@@ -39,60 +39,26 @@ foreach ($carrito as $producto) {
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
                                         <img src="../img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen del Producto"
-                                            class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
+                                             class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
                                         <div>
                                             <h5><?php echo $producto['nombre']; ?></h5>
                                             <p class="text-muted"><?php echo $producto['descripcion']; ?></p>
                                         </div>
                                     </div>
                                 </td>
-
-                                <!-- Aki se añade la cantidad seleccionada en el input -->
                                 <td class="align-middle">
-                                    <form action="carrito_agregarP.php" method="POST">
-                                        <input type="hidden" name="index" value="<?php echo $index; ?>">
-
-                                        <input type="hidden" name="cantidad_agregar" class="form-control" value="1" min="1"
-                                            max="<?php echo $producto['cantidad']; ?>"
-                                            style="width: 70px; margin-bottom: 10px;">
-
-                                        <input type="number" class="form-control" value="<?php echo $producto['cantidad']; ?>"
-                                            min="1" style="width: 70px; margin-bottom: 10px;" readonly>
-
-                                        <button type="submit" class="btn btn-primary btn-sm">
-                                            <i class="bi bi-plus"></i> Agregar
-                                        </button>
-                                    </form>
+                                    <input type="number" class="form-control" value="<?php echo $producto['cantidad']; ?>"
+                                           min="1" style="width: 70px;">
                                 </td>
-
-                                <!---->
-
+                                <td class="align-middle">$<?php echo number_format($producto['precio'], 2); ?></td>
+                                <td class="align-middle">$<?php echo number_format($producto['cantidad'] * $producto['precio'], 2); ?></td>
                                 <td class="align-middle">
-                                    $<?php
-                                    echo number_format($producto['precio'], 2);
-                                    ?>
+                                    <a href="carrito_eliminarP.php?index=<?php echo $index; ?>" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </a>
                                 </td>
-
-                                <td class="align-middle">
-                                    $<?php echo number_format($producto['cantidad'] * $producto['precio'], 2); ?>
-                                </td>
-
-                                <!-- Aki se borra la cantidad seleccionada en el input -->
-                                <td class="align-middle">
-                                    <form action="carrito_eliminarP.php" method="POST">
-                                        <input type="hidden" name="index" value="<?php echo $index; ?>">
-                                        <input type="number" name="cantidad_eliminar" class="form-control" value="1" min="1"
-                                            max="<?php echo $producto['cantidad']; ?>"
-                                            style="width: 70px; margin-bottom: 10px;">
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i> Eliminar
-                                        </button>
-                                    </form>
-                                </td>
-                                <!---->
                             </tr>
                         <?php } ?>
-
                     </tbody>
                 </table>
 
@@ -121,14 +87,12 @@ foreach ($carrito as $producto) {
             <?php } else { ?>
                 <!-- Mensaje si el carrito está vacío -->
                 <div class="alert alert-warning" role="alert">
-                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a
-                        comprar</a>.
+                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a comprar</a>.
                 </div>
             <?php } ?>
         </div>
     </div>
 </main>
 
-<?php
-include '../footer.php';
-?>
+<?php 
+include '../footer.php'; ?>
