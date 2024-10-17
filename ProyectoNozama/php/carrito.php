@@ -1,10 +1,21 @@
-<?php 
-include './header.php'; 
+<?php
+include './header.php';
+session_start();
+
+// Obtiene el carrito desde la sesión
+$carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
+$total_productos = count($carrito);
+$total_precio = 0;
+
+// Calcula el total del precio
+foreach ($carrito as $producto) {
+    $total_precio += $producto['cantidad'] * $producto['precio'];
+}
 ?>
 
 <link rel="stylesheet" href="../css/main.css">
 
-<main class="container"> 
+<main class="container">
     <div class="row">
         <div class="col">
             <h2>Carrito de Compras</h2>
@@ -22,30 +33,66 @@ include './header.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Simulación de productos del carrito -->
-                        <?php foreach ($carrito as $producto) { ?>
-                        <tr>
-                            <td class="align-middle">
-                                <div class="d-flex align-items-center">
-                                    <img src="../img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen del Producto" class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
-                                    <div>
-                                        <h5><?php echo $producto['nombre']; ?></h5>
-                                        <p class="text-muted"><?php echo $producto['descripcion']; ?></p>
+                        <!-- Renderizar los productos del carrito -->
+                        <?php foreach ($carrito as $index => $producto) { ?>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="d-flex align-items-center">
+                                        <img src="../img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen del Producto"
+                                            class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
+                                        <div>
+                                            <h5><?php echo $producto['nombre']; ?></h5>
+                                            <p class="text-muted"><?php echo $producto['descripcion']; ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <input type="number" class="form-control" value="<?php echo $producto['cantidad']; ?>" min="1" style="width: 70px;">
-                            </td>
-                            <td class="align-middle">$<?php echo number_format($producto['precio'], 2); ?></td>
-                            <td class="align-middle">$<?php echo number_format($producto['cantidad'] * $producto['precio'], 2); ?></td>
-                            <td class="align-middle">
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Eliminar
-                                </button>
-                            </td>
-                        </tr>
+                                </td>
+
+                                <!-- Aki se añade la cantidad seleccionada en el input -->
+                                <td class="align-middle">
+                                    <form action="carrito_agregarP.php" method="POST">
+                                        <input type="hidden" name="index" value="<?php echo $index; ?>">
+
+                                        <input type="hidden" name="cantidad_agregar" class="form-control" value="1" min="1"
+                                            max="<?php echo $producto['cantidad']; ?>"
+                                            style="width: 70px; margin-bottom: 10px;">
+
+                                        <input type="number" class="form-control" value="<?php echo $producto['cantidad']; ?>"
+                                            min="1" style="width: 70px; margin-bottom: 10px;" readonly>
+
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="bi bi-plus"></i> Agregar
+                                        </button>
+                                    </form>
+                                </td>
+
+                                <!---->
+
+                                <td class="align-middle">
+                                    $<?php
+                                    echo number_format($producto['precio'], 2);
+                                    ?>
+                                </td>
+
+                                <td class="align-middle">
+                                    $<?php echo number_format($producto['cantidad'] * $producto['precio'], 2); ?>
+                                </td>
+
+                                <!-- Aki se borra la cantidad seleccionada en el input -->
+                                <td class="align-middle">
+                                    <form action="carrito_eliminarP.php" method="POST">
+                                        <input type="hidden" name="index" value="<?php echo $index; ?>">
+                                        <input type="number" name="cantidad_eliminar" class="form-control" value="1" min="1"
+                                            max="<?php echo $producto['cantidad']; ?>"
+                                            style="width: 70px; margin-bottom: 10px;">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                                <!---->
+                            </tr>
                         <?php } ?>
+
                     </tbody>
                 </table>
 
@@ -74,11 +121,14 @@ include './header.php';
             <?php } else { ?>
                 <!-- Mensaje si el carrito está vacío -->
                 <div class="alert alert-warning" role="alert">
-                    Tu carrito está vacío. <a href="productos.php" class="text-decoration-none">Empieza a comprar</a>.
+                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a
+                        comprar</a>.
                 </div>
             <?php } ?>
         </div>
     </div>
 </main>
 
-<?php include '../footer.php'; ?>
+<?php
+include '../footer.php';
+?>
