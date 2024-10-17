@@ -1,5 +1,5 @@
 <?php 
-include '../header.php'; 
+include '../php/header.php'; 
 require '../Controlador/InfoPedido.php';
 ?>
 <main class="container"> 
@@ -63,4 +63,4 @@ require '../Controlador/InfoPedido.php';
         </div>
     </div>
 </main>
-<?php include '../footer.php'; ?>
+<?php include '../php/footer.php'; ?>
