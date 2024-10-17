@@ -105,7 +105,7 @@
     <div class="col-lg-4 col-md-6 mb-4">
     <div class="card h-100 shadow-sm">
         <div class="card-body">
-            <h5 class="card-title">Añadir Producto</h5>
+            <h5 class="card-title">Añadir producto:</h5>
 
             <!-- Campo para el nombre -->
             <div class="form-group mb-3">
@@ -167,40 +167,212 @@
 
 
 
+            </div>
+        </div>
+    </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Modificar producto:</h5>
+
+                <!-- Campo para el ID -->
+                <div class="form-group mb-3">
+                    <label for="nombreProducto">ID:</label>
+                    <input type="number" class="form-control" id="idProducto" placeholder="Ingresa el id">
+                </div>
+                
+                <!-- Campo para el nombre -->
+                <div class="form-group mb-3">
+                    <label for="nombreProducto">Nombre:</label>
+                    <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
+                </div>
+
+                <!-- Campo para la descripción -->
+                <div class="form-group mb-3">
+                    <label for="descripcionProducto">Descripción:</label>
+                    <textarea class="form-control" id="descripcionProducto" rows="3" placeholder="Ingresa la descripción"></textarea>
+                </div>
+
+                <!-- Campo para el precio -->
+                <div class="form-group mb-3">
+                    <label for="precioProducto">Precio:</label>
+                    <input type="number" class="form-control" id="precioProducto" placeholder="Ingresa el precio">
+                </div>
+
+                <!-- Campo para la disponibilidad -->
+                <div class="form-group mb-3">
+                    <label for="disponibilidadProducto">Disponibilidad:</label>
+                    <input type="number" class="form-control" id="disponibilidadProducto" placeholder="Unidades disponibles">
+                </div>
+
+                <!-- Campo para la fecha de creación -->
+                <div class="form-group mb-3">
+                    <label for="fechaCreacionProducto">Fecha de Creación:</label>
+                    <input type="date" class="form-control" id="fechaCreacionProducto">
+                </div>
+
+                <!-- Campo para la imagen -->
+                <div class="form-group mb-3">
+                    <label for="imagenProducto">Imagen:</label>
+                    <input type="file" class="form-control" id="imagenProducto">
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary">Aplicar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-30 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Eliminar producto:</h5>
+
+            <!-- Campo para el nombre -->
+            <div class="form-group mb-3">
+                <label for="nombreProducto">ID:</label>
+                <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary">Buscar producto</button>
+            </div>
         </div>
     </div>
 </div>
 
 
-        <!-- Segundo cuadro -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Modificar</h5>
-                    <p class="card-text">Aquí puedes agregar información o contenido.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tercer cuadro -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Eliminar</h5>
-                    <p class="card-text">Aquí puedes agregar información o contenido.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cuarto cuadro -->
-        <div class="col-lg-4 col-md-6 mb-4">
+     <!-- Cuarto cuadro -->
+            <<div class="col-lg-12 col-md-8 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Listado de productos</h5>
-                    <p class="card-text">Aquí puedes agregar información o contenido.</p>
+                    <!-- Sección de botones -->
+                    <div class="d-flex flex-wrap justify-content-between mb-3">
+                        <button class="btn btn-primary mb-2" id="btnTabla1">Bocinas</button>
+                        <button class="btn btn-primary mb-2" id="btnTabla2">Cargadores</button>
+                        <button class="btn btn-primary mb-2" id="btnTabla3">Cables</button>
+                        <button class="btn btn-primary mb-2" id="btnTabla4">Baterias</button>
+                        <button class="btn btn-primary mb-2" id="btnTabla5">Audifonos</button>
+                        <button class="btn btn-primary mb-2" id="btnTabla6">Adaptadores</button>
+                    </div>
+                    <!-- Sección de la tabla -->
+                    <div class="table-responsive">
+                    <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Precio</th>
+                                    <th>Disponibilidad</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Imagen</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaContenido">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Bocina JBL Flip 5</td>
+                                    <td>Bocina portátil con sonido potente, resistente al agua.</td>
+                                    <td>$1,500</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/jbl-flip5.jpg" alt="Bocina JBL Flip 5" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Bose SoundLink Revolve</td>
+                                    <td>Sonido envolvente 360 grados, diseño portátil.</td>
+                                    <td>$3,200</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/bose-soundlink.jpg" alt="Bose SoundLink Revolve" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Sonos Move</td>
+                                    <td>Bocina inteligente con integración de asistentes de voz.</td>
+                                    <td>$4,500</td>
+                                    <td>Agotado</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/sonos-move.jpg" alt="Sonos Move" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Ultimate Ears BOOM 3</td>
+                                    <td>Bocina portátil resistente al agua con sonido envolvente.</td>
+                                    <td>$2,000</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/ue-boom3.jpg" alt="Ultimate Ears BOOM 3" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Marshall Emberton</td>
+                                    <td>Bocina portátil con diseño clásico y sonido nítido.</td>
+                                    <td>$3,000</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/marshall-emberton.jpg" alt="Marshall Emberton" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Harman Kardon Onyx Studio 6</td>
+                                    <td>Bocina con diseño elegante y sonido de alta calidad.</td>
+                                    <td>$3,800</td>
+                                    <td>Agotado</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/hk-onyx6.jpg" alt="Harman Kardon Onyx Studio 6" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>JBL Charge 4</td>
+                                    <td>Bocina portátil con batería de larga duración y sonido potente.</td>
+                                    <td>$2,500</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/jbl-charge4.jpg" alt="JBL Charge 4" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Sony SRS-XB43</td>
+                                    <td>Bocina con sonido extra bass y luces LED personalizables.</td>
+                                    <td>$3,000</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/sony-srs-xb43.jpg" alt="Sony SRS-XB43" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Amazon Echo (4ta Gen)</td>
+                                    <td>Bocina inteligente con Alexa integrada y sonido envolvente.</td>
+                                    <td>$2,200</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/amazon-echo4.jpg" alt="Amazon Echo 4ta Gen" width="100"></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Anker Soundcore 2</td>
+                                    <td>Bocina portátil económica con excelente rendimiento de batería.</td>
+                                    <td>$1,200</td>
+                                    <td>En stock</td>
+                                    <td>2024-10-16</td>
+                                    <td><img src="https://example.com/anker-soundcore2.jpg" alt="Anker Soundcore 2" width="100"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 </main>
 
