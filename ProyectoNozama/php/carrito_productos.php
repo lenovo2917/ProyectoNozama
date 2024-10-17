@@ -18,6 +18,13 @@ $productos = [
         'precio' => 200,
         'descripcion' => 'Descripción del producto 2',
         'imagen' => 'producto2.jpg'
+    ],
+    [
+        'id' => 3,
+        'nombre' => 'Producto 3',
+        'descripcion' => 'Descripción del producto 3',
+        'precio' => 300.00,
+        'imagen' => 'producto3.jpg'
     ]
 ];
 ?>
