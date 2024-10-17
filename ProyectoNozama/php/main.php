@@ -78,12 +78,11 @@
 
                     <div class="carousel-inner">
                         <?php include './tarjetas_bocinas.php'; ?>
-                        <?php include './; ?>
                     </div>
                 </div>
             </section>
 
-
+    
 
 
 
@@ -101,8 +100,7 @@
             <section id="cables" class="category-section mb-5">
                 <h2>Cables</h2>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Tarjetas de productos de cables -->
-                    <!-- Reemplazar con los productos específicos de esta categoría -->
+                    <?php include './tarjetas_cables.php'; ?>   
                 </div>
             </section>
 
