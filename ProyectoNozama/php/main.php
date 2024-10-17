@@ -78,7 +78,7 @@
 
                     <div class="carousel-inner">
                         <?php include './tarjetas_bocinas.php'; ?>
-                        <?php include './; ?>
+                        <?php include './; '?> <!--Rogelio: faltó una comilla ahí, tons se dañaba el resto del codigo xd-->
                     </div>
                 </div>
             </section>
@@ -135,4 +135,4 @@
         </div>
     </div>
 </main>
-<?php include './footer.php'; ?>
+<?php include '../footer.php'; ?>
