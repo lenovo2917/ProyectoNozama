@@ -4,11 +4,12 @@ session_start();
 
 // Obtiene el carrito desde la sesión
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
-$total_productos = count($carrito);
+$total_productos = 0; // Cambiado para acumular cantidades
 $total_precio = 0;
 
-// Calcula el total del precio
+// Calcula el total del precio y la suma total de productos
 foreach ($carrito as $producto) {
+    $total_productos += $producto['cantidad']; // Acumula la cantidad total
     $total_precio += $producto['cantidad'] * $producto['precio'];
 }
 ?>
@@ -39,23 +40,49 @@ foreach ($carrito as $producto) {
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
                                         <img src="../img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen del Producto"
-                                             class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
+                                            class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
                                         <div>
                                             <h5><?php echo $producto['nombre']; ?></h5>
                                             <p class="text-muted"><?php echo $producto['descripcion']; ?></p>
                                         </div>
                                     </div>
                                 </td>
+
                                 <td class="align-middle">
-                                    <input type="number" class="form-control" value="<?php echo $producto['cantidad']; ?>"
-                                           min="1" style="width: 70px;">
+                                    <form action="carrito_agregarP.php" method="POST">
+                                        <input type="hidden" name="index" value="<?php echo $index; ?>">
+
+                                        <input type="hidden" name="cantidad_agregar" class="form-control" value="1" min="1"
+                                            max="<?php echo $producto['cantidad']; ?>"
+                                            style="width: 70px; margin-bottom: 10px;">
+
+                                        <input type="number" class="form-control" value="<?php echo $producto['cantidad']; ?>"
+                                            min="1" style="width: 70px; margin-bottom: 10px;" readonly>
+
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="bi bi-plus"></i> Agregar
+                                        </button>
+                                    </form>
                                 </td>
-                                <td class="align-middle">$<?php echo number_format($producto['precio'], 2); ?></td>
-                                <td class="align-middle">$<?php echo number_format($producto['cantidad'] * $producto['precio'], 2); ?></td>
+
                                 <td class="align-middle">
-                                    <a href="carrito_eliminarP.php?index=<?php echo $index; ?>" class="btn btn-danger btn-sm">
-                                        <i class="bi bi-trash"></i> Eliminar
-                                    </a>
+                                    $<?php echo number_format($producto['precio'], 2); ?>
+                                </td>
+
+                                <td class="align-middle">
+                                    $<?php echo number_format($producto['cantidad'] * $producto['precio'], 2); ?>
+                                </td>
+
+                                <td class="align-middle">
+                                    <form action="carrito_eliminarP.php" method="POST">
+                                        <input type="hidden" name="index" value="<?php echo $index; ?>">
+                                        <input type="number" name="cantidad_eliminar" class="form-control" value="1" min="1"
+                                            max="<?php echo $producto['cantidad']; ?>"
+                                            style="width: 70px; margin-bottom: 10px;">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Eliminar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -85,14 +112,15 @@ foreach ($carrito as $producto) {
                 </div>
 
             <?php } else { ?>
-                <!-- Mensaje si el carrito está vacío -->
                 <div class="alert alert-warning" role="alert">
-                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a comprar</a>.
+                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a
+                        comprar</a>.
                 </div>
             <?php } ?>
         </div>
     </div>
 </main>
 
-<?php 
-include '../footer.php'; ?>
+<?php
+include '../footer.php';
+?>
