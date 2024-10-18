@@ -1,6 +1,6 @@
 <?php 
-include '../php/header.php'; 
-require '../Controlador/InfoPedido.php';
+    include './header.php'; 
+    require '../Controlador/InfoPedido.php';
 ?>
 <main class="container"> 
     <div class="row">

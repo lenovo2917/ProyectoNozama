@@ -24,13 +24,15 @@ CREATE TABLE Productos (
     Nombre VARCHAR(60),
     precio FLOAT NOT NULL,
     descripcion VARCHAR(65),
-    disponible int not null,
-    cantidad int not null,
+    disponible INT NOT NULL,
+    cantidad INT NOT NULL,
     fecha_creacion DATE,
     Id_categoria INT,
+    imagen BLOB,  -- Nueva columna añadida
     FOREIGN KEY (Id_categoria) REFERENCES Categoria(Id),
     CONSTRAINT ck_Disponible CHECK (disponible IN (0,1))
 );
+
 
 describe pedido;
 -- Añadir columnas adicionales a la tabla Productos, si faltaran

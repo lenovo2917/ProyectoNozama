@@ -5,7 +5,7 @@ USE Nozama;
 
 -- crear el usuario, descomentarlo
 -- Usuarios
--- CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
 
 -- Permisos
  GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON Nozama.* TO 'rogelio'@'localhost';
@@ -32,6 +32,7 @@ CREATE TABLE Productos (
     CONSTRAINT ck_Disponible CHECK (disponible IN (0,1))
 );
 
+describe pedido;
 -- Añadir columnas adicionales a la tabla Productos, si faltaran
 
 -- Tabla Datos_Cliente
@@ -55,6 +56,8 @@ CREATE TABLE Cliente (
     FOREIGN KEY (Id_dato) REFERENCES Datos_Cliente(Id_dato),
 	CONSTRAINT ck_Rol CHECK (Rol IN (0,1,3))
 );
+
+-- Rol 0-Cliente, 1-Empleado, 3-Administrador
 
 
 
@@ -107,7 +110,7 @@ CREATE TABLE Pedido (
     FOREIGN KEY (Id_Cliente) REFERENCES Cliente(Id_Cliente),
     FOREIGN KEY (Id_Carrito) REFERENCES Carrito(Id_Carrito),
 	CONSTRAINT ck_Estado CHECK (estado IN (0,1,3))
-);
+); -- Estado 0:Preparacion/pendiente, 1:En Camino, 3:Finalizado
 
 -- Trigger para validar el precio de Productos
 DELIMITER //
@@ -189,4 +192,43 @@ VALUES ('Cargador Huawei Tipo C', 75, 'Cargador de pared original Huawei, voltaj
 INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
 VALUES ('Cubo Samsung 35W Tipo C', 130, 'Super rápida, no incluye cable, dispositivos móviles compatibles: Huawei, etc.', 1, 150, '2024-10-01', 2);
 
+
+-- Primer cliente
+INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Juan Pérez', 'Jojutla Morelos 62909', '7773933706',1);
+
+-- Insertar cliente
+INSERT INTO Cliente (Id_dato, Correo, Rol, Contrasena) VALUES (1, 'juan.perez@gmail.com', 0, 'juan');
+
+-- Insertar envio
+-- Inserción en la tabla Envio
+INSERT INTO Envio (Tipo, DireccionEnvio, CP, Telefono, Estado) VALUES ('Express', 'Calle Ejemplo 123', '12345', '5551234567', 'En ruta');
+-- Hacer un altertable agregando Cliente.ID para referenciar envio al cliente.
+
+-- Insercion Pago
+-- Inserción en la tabla Forma_Pago
+INSERT INTO Forma_Pago (Banco, No_Tarjeta, Fecha_Vencimiento, CVV, Nombre_beneficiario) 
+VALUES ('BBVA Bancomer', '1234567812345678', '12/25', '123', 'Juan Pérez');
+-- Hacer un altertable agregando Cliente.ID para referenciar la forma de pago al cliente.
+
+-- Insercion Carrito
+-- Inserción en la tabla Carrito
+INSERT INTO Carrito (Id_Producto, Cantidad, Precio, Id_FormaPago, Id_Envio) VALUES (1, 1, 230, 1, LAST_INSERT_ID()); 
+
+Select * from Cliente;
+
+-- Inserción en la tabla Pedido
+INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (CURRENT_TIMESTAMP, 200, 1, LAST_INSERT_ID(), 0);
+
+INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (CURRENT_TIMESTAMP, 222222, 1, LAST_INSERT_ID(), 1);
+
+INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
+VALUES (CURRENT_TIMESTAMP, 333333, 1, 1, 3);
+
+
+
+
+--  COnsultar
+Select * from Pedido where Id_Cliente=1;
 
