@@ -99,9 +99,22 @@
             <!-- Sección de Cables -->
             <section id="cables" class="category-section mb-5">
                 <h2>Cables</h2>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <?php include './tarjetas_cables.php'; ?>   
+                <div id="cablesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores (bolitas) -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+
+                    
+                        <?php include './tarjetas_cables.php'; ?>
+                    </div>
                 </div>
+                
                 
             </section>
 
