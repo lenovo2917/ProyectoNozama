@@ -1,6 +1,6 @@
 <?php 
-include './header.php'; 
-require '../Controlador/InfoPedido.php';
+    include './header.php'; 
+    require '../Controlador/InfoPedido.php';
 ?>
 <main class="container"> 
     <div class="row">
@@ -63,4 +63,4 @@ require '../Controlador/InfoPedido.php';
         </div>
     </div>
 </main>
-<?php include '../footer.php'; ?>
+<?php include '../php/footer.php'; ?>
