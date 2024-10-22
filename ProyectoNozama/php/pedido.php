@@ -63,4 +63,4 @@
         </div>
     </div>
 </main>
-<?php include '../php/footer.php'; ?>
+<?php include './footer.php'; ?>
