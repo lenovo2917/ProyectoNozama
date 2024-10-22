@@ -1,3 +1,4 @@
+-- Active: 1729273691914@@localhost@3306@nozama
 -- DROP DATABASE Nozama;
 
 CREATE DATABASE Nozama;
