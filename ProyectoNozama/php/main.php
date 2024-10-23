@@ -90,9 +90,20 @@
             <!-- Sección de Cargadores -->
             <section id="cargadores" class="category-section mb-5">
                 <h2>Cargadores</h2>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Tarjetas de productos de cargadores -->
-                    <!-- Reemplazar con los productos específicos de esta categoría -->
+                <div id="caradoresCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores (bolitas) -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#caradoresCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#caradoresCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#caradoresCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+
+                    
+                        <?php include './tarjetas_cargadores.php'; ?>
+                    </div>
                 </div>
             </section>
 
@@ -121,27 +132,60 @@
             <!-- Sección de Baterías -->
             <section id="baterias" class="category-section mb-5">
                 <h2>Baterías</h2>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Tarjetas de productos de baterías -->
-                    <!-- Reemplazar con los productos específicos de esta categoría -->
+                <div id="cablesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores (bolitas) -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+
+                    
+                        <?php include './tarjetas_baterias.php'; ?>
+                    </div>
                 </div>
             </section>
 
             <!-- Sección de Audífonos -->
             <section id="audifonos" class="category-section mb-5">
                 <h2>Audífonos</h2>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Tarjetas de productos de audífonos -->
-                    <!-- Reemplazar con los productos específicos de esta categoría -->
+                <div id="cablesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores (bolitas) -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+
+                    
+                        <?php include './tarjetas_audifonos.php'; ?>
+                    </div>
                 </div>
             </section>
 
             <!-- Sección de Adaptadores -->
             <section id="adaptadores" class="category-section mb-5">
                 <h2>Adaptadores</h2>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <!-- Tarjetas de productos de adaptadores -->
-                    <!-- Reemplazar con los productos específicos de esta categoría -->
+                <div id="cablesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores (bolitas) -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#cablesCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+
+                    
+                        <?php include './tarjetas_adaptadores.php'; ?>
+                    </div>
                 </div>
             </section>
         </div>
