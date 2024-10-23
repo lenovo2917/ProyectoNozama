@@ -122,5 +122,5 @@ foreach ($carrito as $producto) {
 </main>
 
 <?php
-include '../footer.php';
+include './footer.php';
 ?>

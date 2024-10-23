@@ -61,7 +61,7 @@ CREATE TABLE Cliente (
 );
 
 -- Rol 0-Cliente, 1-Empleado, 3-Administrador
-
+select * from productos;
 
 
 -- Tabla Forma_Pago
