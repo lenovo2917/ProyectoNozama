@@ -102,7 +102,7 @@
     <!--Main o contenido-->
     <main class="container mt-4">
     <div class="row">
-        <!-- Card para añadir producto -->
+        
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
@@ -148,7 +148,7 @@
             </div>
         </div>
 
-        <!-- Card para modificar producto -->
+        
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
@@ -188,7 +188,7 @@
             </div>
         </div>
 
-        <!-- Card para eliminar producto -->
+        
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
@@ -205,7 +205,7 @@
         </div>
     </div>
 
-    <!-- Card para listado de productos -->
+    
     <div class="col-lg-12 mb-4">
         <div class="card h-100 shadow-sm">
             <div class="card-body">
