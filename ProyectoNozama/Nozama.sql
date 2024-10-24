@@ -15,7 +15,7 @@ FLUSH PRIVILEGES;
 -- Tabla Departamento
 CREATE TABLE Categoria (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(60)
+    nombre VARCHAR(60)  
 );
 
 
