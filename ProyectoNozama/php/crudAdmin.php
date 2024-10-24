@@ -115,37 +115,47 @@
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Modificar producto:</h5>
-                    <div class="form-group mb-3">
-                        <label for="idProducto">ID:</label>
-                        <input type="number" class="form-control" id="idProducto" placeholder="Ingresa el id">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="nombreProducto">Nombre:</label>
-                        <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="descripcionProducto">Descripción:</label>
-                        <textarea class="form-control" id="descripcionProducto" rows="3" placeholder="Ingresa la descripción"></textarea>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="precioProducto">Precio:</label>
-                        <input type="number" class="form-control" id="precioProducto" placeholder="Ingresa el precio">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="disponibilidadProducto">Disponibilidad:</label>
-                        <input type="number" class="form-control" id="disponibilidadProducto" placeholder="Unidades disponibles">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="fechaCreacionProducto">Fecha de Creación:</label>
-                        <input type="date" class="form-control" id="fechaCreacionProducto">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="imagenProducto">Imagen:</label>
-                        <input type="file" class="form-control" id="imagenProducto">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary">Aplicar cambios</button>
-                    </div>
+                    <form action="modProAd.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="idProducto">ID:</label>
+                            <input type="number" class="form-control" id="idProducto" name="idProducto" placeholder="Ingresa el id para ubicar producto" required onblur="buscarProducto()">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="nProducto">Nombre:</label>
+                            <input type="text" class="form-control" id="nProducto" name="nProducto"  required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="pProducto">Precio:</label>
+                            <input type="number" class="form-control" id="pProducto" name="pProducto"  required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="dProducto">Descripción:</label>
+                            <textarea class="form-control" id="dProducto" name="dProducto" rows="3"  required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="disProducto">Disponibilidad:</label>
+                            <input type="number" class="form-control" id="disProducto" name="disProducto" placeholder="SOLO VALORES 0 Y 1" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cProducto">Cantidad:</label>
+                            <input type="number" class="form-control" id="cProducto" name="cProducto"  required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="fCreacionProducto">Fecha de Creación:</label>
+                            <input type="date" class="form-control" id="fCreacionProducto" name="fCreacionProducto" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="idC">Categoría:</label>
+                            <input type="number" class="form-control" id="idC" name="idC" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="imaProducto">Imagen:</label>
+                            <input type="file" class="form-control" id="imaProducto" name="imaProducto" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Modificar producto</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -287,6 +297,48 @@
                 alert("Error al añadir el producto.");
             }
         }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    function buscarProducto() {
+        var idProducto = $('#idProducto').val();
+        
+        if (idProducto) {
+            $.ajax({
+                type: 'POST',
+                url: 'buscarProducto.php',
+                data: { idProducto: idProducto },
+                dataType: 'json',
+                success: function(data) {
+                    if (data) {
+                        // Rellena los campos del formulario con los datos devueltos
+                        $('#nProducto').val(data.Nombre);
+                        $('#pProducto').val(data.precio);
+                        $('#dProducto').val(data.descripcion);
+                        $('#disProducto').val(data.disponible);
+                        $('#cProducto').val(data.cantidad);
+                        $('#fCreacionProducto').val(data.fecha_creacion);
+                        $('#idC').val(data.Id_categoria);
+                        // Si quieres mostrar la imagen, necesitarás manejarlo aquí
+                    } else {
+                        alert('Producto no encontrado.');
+                    }
+                },
+                error: function() {
+                    alert('Error al buscar el producto.');
+                }
+            });
+        } else {
+            // Limpiar los campos si el ID está vacío
+            $('#nProducto').val('');
+            $('#pProducto').val('');
+            $('#dProducto').val('');
+            $('#disProducto').val('');
+            $('#cProducto').val('');
+            $('#fCreacionProducto').val('');
+            $('#idC').val('');
+        }
+    }
     </script>
 </body>
 
