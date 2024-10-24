@@ -60,44 +60,6 @@
         </nav>
         <hr> 
 
-        <nav class="navbar nav-underline navbar-expand-lg submenu">
-            <div class="container-fluid">
-                <ul class="navbar-nav nav-fill w-100 me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-speaker fs-5"></i> Bocinas
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-battery-charging fs-5"></i> Cargadores
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-bezier fs-5"></i> Cables
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-battery-full fs-5"></i> Baterías
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-headphones fs-5"></i> Audífonos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-plug fs-5"></i> Adaptadores
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        
-    </header>
 
     <!--Main o contenido-->
     <main class="container mt-4">
