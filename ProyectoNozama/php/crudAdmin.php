@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="./css/estiloCrudAdmin.css">
+    <link rel="stylesheet" href="../css/plantilla.css">
 </head>
 
 <body>
@@ -60,321 +60,159 @@
         </nav>
         <hr> 
 
-        <nav class="navbar nav-underline navbar-expand-lg submenu">
-            <div class="container-fluid">
-                <ul class="navbar-nav nav-fill w-100 me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-speaker fs-5"></i> Bocinas
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-battery-charging fs-5"></i> Cargadores
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-bezier fs-5"></i> Cables
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-battery-full fs-5"></i> Baterías
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-headphones fs-5"></i> Audífonos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-plug fs-5"></i> Adaptadores
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        
-    </header>
 
     <!--Main o contenido-->
-    <main class="container">
+    <main class="container mt-4">
     <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Añadir producto:</h5>
-
-            <!-- Campo para el nombre -->
-            <div class="form-group mb-3">
-                <label for="nombreProducto">Nombre:</label>
-                <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
-            </div>
-
-            <!-- Campo para la descripción -->
-            <div class="form-group mb-3">
-                <label for="descripcionProducto">Descripción:</label>
-                <textarea class="form-control" id="descripcionProducto" rows="3" placeholder="Ingresa la descripción"></textarea>
-            </div>
-
-            <!-- Campo para el precio -->
-            <div class="form-group mb-3">
-                <label for="precioProducto">Precio:</label>
-                <input type="number" class="form-control" id="precioProducto" placeholder="Ingresa el precio">
-            </div>
-
-            <!-- Campo para la disponibilidad -->
-            <div class="form-group mb-3">
-                <label for="disponibilidadProducto">Disponibilidad:</label>
-                <input type="number" class="form-control" id="disponibilidadProducto" placeholder="Unidades disponibles">
-            </div>
-
-            <!-- Campo para la fecha de creación -->
-            <div class="form-group mb-3">
-                <label for="fechaCreacionProducto">Fecha de Creación:</label>
-                <input type="date" class="form-control" id="fechaCreacionProducto">
-            </div>
-
-            <!-- Campo para la imagen -->
-            <div class="form-group mb-3">
-                <label for="imagenProducto">Imagen:</label>
-                <input type="file" class="form-control" id="imagenProducto">
-            </div>
-
-            <!-- Botones -->
-            <div class="row">
-            <div class="col-6 mb-2">
-                <button class="btn btn-primary w-100">Bocinas</button>
-            </div>
-            <div class="col-6 mb-2">
-                <button class="btn btn-primary w-100">Cargadores</button>
-            </div>
-            <div class="col-6 mb-2">
-                <button class="btn btn-primary w-100">Cables</button>
-            </div>
-            <div class="col-6 mb-2">
-                <button class="btn btn-primary w-100">Baterías</button>
-            </div>
-            <div class="col-6">
-                <button class="btn btn-primary w-100">Audífonos</button>
-            </div>
-            <div class="col-6">
-                <button class="btn btn-primary w-100">Adaptadores</button>
-            </div>
-        </div>
-
-
-
-            </div>
-        </div>
-    </div>
-
-
+        
         <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title">Modificar producto:</h5>
-
-                <!-- Campo para el ID -->
-                <div class="form-group mb-3">
-                    <label for="nombreProducto">ID:</label>
-                    <input type="number" class="form-control" id="idProducto" placeholder="Ingresa el id">
-                </div>
-                
-                <!-- Campo para el nombre -->
-                <div class="form-group mb-3">
-                    <label for="nombreProducto">Nombre:</label>
-                    <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
-                </div>
-
-                <!-- Campo para la descripción -->
-                <div class="form-group mb-3">
-                    <label for="descripcionProducto">Descripción:</label>
-                    <textarea class="form-control" id="descripcionProducto" rows="3" placeholder="Ingresa la descripción"></textarea>
-                </div>
-
-                <!-- Campo para el precio -->
-                <div class="form-group mb-3">
-                    <label for="precioProducto">Precio:</label>
-                    <input type="number" class="form-control" id="precioProducto" placeholder="Ingresa el precio">
-                </div>
-
-                <!-- Campo para la disponibilidad -->
-                <div class="form-group mb-3">
-                    <label for="disponibilidadProducto">Disponibilidad:</label>
-                    <input type="number" class="form-control" id="disponibilidadProducto" placeholder="Unidades disponibles">
-                </div>
-
-                <!-- Campo para la fecha de creación -->
-                <div class="form-group mb-3">
-                    <label for="fechaCreacionProducto">Fecha de Creación:</label>
-                    <input type="date" class="form-control" id="fechaCreacionProducto">
-                </div>
-
-                <!-- Campo para la imagen -->
-                <div class="form-group mb-3">
-                    <label for="imagenProducto">Imagen:</label>
-                    <input type="file" class="form-control" id="imagenProducto">
-                </div>
-
-                <!-- Botones -->
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary">Aplicar cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-30 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Eliminar producto:</h5>
-
-            <!-- Campo para el nombre -->
-            <div class="form-group mb-3">
-                <label for="nombreProducto">ID:</label>
-                <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre">
-            </div>
-
-            <!-- Botones -->
-            <div class="d-flex justify-content-between">
-                <button class="btn btn-primary">Buscar producto</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-     <!-- Cuarto cuadro -->
-            <<div class="col-lg-12 col-md-8 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Listado de productos</h5>
-                    <!-- Sección de botones -->
-                    <div class="d-flex flex-wrap justify-content-between mb-3">
-                        <button class="btn btn-primary mb-2" id="btnTabla1">Bocinas</button>
-                        <button class="btn btn-primary mb-2" id="btnTabla2">Cargadores</button>
-                        <button class="btn btn-primary mb-2" id="btnTabla3">Cables</button>
-                        <button class="btn btn-primary mb-2" id="btnTabla4">Baterias</button>
-                        <button class="btn btn-primary mb-2" id="btnTabla5">Audifonos</button>
-                        <button class="btn btn-primary mb-2" id="btnTabla6">Adaptadores</button>
-                    </div>
-                    <!-- Sección de la tabla -->
-                    <div class="table-responsive">
-                    <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Precio</th>
-                                    <th>Disponibilidad</th>
-                                    <th>Fecha Creación</th>
-                                    <th>Imagen</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaContenido">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bocina JBL Flip 5</td>
-                                    <td>Bocina portátil con sonido potente, resistente al agua.</td>
-                                    <td>$1,500</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/jbl-flip5.jpg" alt="Bocina JBL Flip 5" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Bose SoundLink Revolve</td>
-                                    <td>Sonido envolvente 360 grados, diseño portátil.</td>
-                                    <td>$3,200</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/bose-soundlink.jpg" alt="Bose SoundLink Revolve" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sonos Move</td>
-                                    <td>Bocina inteligente con integración de asistentes de voz.</td>
-                                    <td>$4,500</td>
-                                    <td>Agotado</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/sonos-move.jpg" alt="Sonos Move" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Ultimate Ears BOOM 3</td>
-                                    <td>Bocina portátil resistente al agua con sonido envolvente.</td>
-                                    <td>$2,000</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/ue-boom3.jpg" alt="Ultimate Ears BOOM 3" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Marshall Emberton</td>
-                                    <td>Bocina portátil con diseño clásico y sonido nítido.</td>
-                                    <td>$3,000</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/marshall-emberton.jpg" alt="Marshall Emberton" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Harman Kardon Onyx Studio 6</td>
-                                    <td>Bocina con diseño elegante y sonido de alta calidad.</td>
-                                    <td>$3,800</td>
-                                    <td>Agotado</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/hk-onyx6.jpg" alt="Harman Kardon Onyx Studio 6" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>JBL Charge 4</td>
-                                    <td>Bocina portátil con batería de larga duración y sonido potente.</td>
-                                    <td>$2,500</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/jbl-charge4.jpg" alt="JBL Charge 4" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Sony SRS-XB43</td>
-                                    <td>Bocina con sonido extra bass y luces LED personalizables.</td>
-                                    <td>$3,000</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/sony-srs-xb43.jpg" alt="Sony SRS-XB43" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Amazon Echo (4ta Gen)</td>
-                                    <td>Bocina inteligente con Alexa integrada y sonido envolvente.</td>
-                                    <td>$2,200</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/amazon-echo4.jpg" alt="Amazon Echo 4ta Gen" width="100"></td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Anker Soundcore 2</td>
-                                    <td>Bocina portátil económica con excelente rendimiento de batería.</td>
-                                    <td>$1,200</td>
-                                    <td>En stock</td>
-                                    <td>2024-10-16</td>
-                                    <td><img src="https://example.com/anker-soundcore2.jpg" alt="Anker Soundcore 2" width="100"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <h5 class="card-title">Añadir producto:</h5>
+                    <form action="agProAd.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="nombreProducto">Nombre:</label>
+                            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingresa el nombre" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="precioProducto">Precio:</label>
+                            <input type="number" class="form-control" id="precioProducto" name="precioProducto" placeholder="Ingresa el precio" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="descripcionProducto">Descripción:</label>
+                            <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" rows="3" placeholder="Ingresa la descripción" required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="disponibilidadProducto">Disponibilidad:</label>
+                            <input type="number" class="form-control" id="disponibilidadProducto" name="disponibilidadProducto" placeholder="Unidades disponibles" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cantidadProducto">Cantidad:</label>
+                            <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto" placeholder="Cantidad" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="fechaCreacionProducto">Fecha de Creación:</label>
+                            <input type="date" class="form-control" id="fechaCreacionProducto" name="fechaCreacionProducto" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="idCategoria">Categoría:</label>
+                            <input type="number" class="form-control" id="idCategoria" name="idCategoria" placeholder="Ingrese categoría" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="imagenProducto">Imagen:</label>
+                            <input type="file" class="form-control" id="imagenProducto" name="imagenProducto" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Añadir Producto Nuevo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Modificar producto:</h5>
+                    <form action="modProAd.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="idProducto">ID:</label>
+                            <input type="number" class="form-control" id="idProducto" name="idProducto" placeholder="Ingresa el id para ubicar producto" required onblur="buscarProducto()">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="nProducto">Nombre:</label>
+                            <input type="text" class="form-control" id="nProducto" name="nProducto"  required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="pProducto">Precio:</label>
+                            <input type="number" class="form-control" id="pProducto" name="pProducto"  required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="dProducto">Descripción:</label>
+                            <textarea class="form-control" id="dProducto" name="dProducto" rows="3"  required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="disProducto">Disponibilidad:</label>
+                            <input type="number" class="form-control" id="disProducto" name="disProducto" placeholder="SOLO VALORES 0 Y 1" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cProducto">Cantidad:</label>
+                            <input type="number" class="form-control" id="cProducto" name="cProducto"  required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="fCreacionProducto">Fecha de Creación:</label>
+                            <input type="date" class="form-control" id="fCreacionProducto" name="fCreacionProducto" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="idC">Categoría:</label>
+                            <input type="number" class="form-control" id="idC" name="idC" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="imaProducto">Imagen:</label>
+                            <input type="file" class="form-control" id="imaProducto" name="imaProducto" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Modificar producto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Eliminar producto:</h5>
+                    <div class="form-group mb-3">
+                        <label for="nombreProducto">ID:</label>
+                        <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el ID del producto">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary">Buscar producto</button>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
+    </div>
+
+    
+    <div class="col-lg-12 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Listado de productos</h5>
+                <div class="d-flex flex-wrap justify-content-between mb-3">
+                    <button class="btn btn-primary mb-2" id="btnTabla1">Bocinas</button>
+                    <button class="btn btn-primary mb-2" id="btnTabla2">Cargadores</button>
+                    <button class="btn btn-primary mb-2" id="btnTabla3">Cables</button>
+                    <button class="btn btn-primary mb-2" id="btnTabla4">Baterías</button>
+                    <button class="btn btn-primary mb-2" id="btnTabla5">Audífonos</button>
+                    <button class="btn btn-primary mb-2" id="btnTabla6">Adaptadores</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Disponibilidad</th>
+                                <th>Fecha Creación</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaContenido">
+                            <!-- Agregar aquí las filas de productos -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+
 
 
     <footer class="container-fluid bg-light text-dark py-5 mt-5 border-top">
@@ -447,6 +285,61 @@
     <!-- Scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mensaje = urlParams.get('mensaje');
+
+            if (mensaje === 'success') {
+                alert("Producto añadido correctamente.");
+            } else if (mensaje === 'error') {
+                alert("Error al añadir el producto.");
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    function buscarProducto() {
+        var idProducto = $('#idProducto').val();
+        
+        if (idProducto) {
+            $.ajax({
+                type: 'POST',
+                url: 'buscarProducto.php',
+                data: { idProducto: idProducto },
+                dataType: 'json',
+                success: function(data) {
+                    if (data) {
+                        // Rellena los campos del formulario con los datos devueltos
+                        $('#nProducto').val(data.Nombre);
+                        $('#pProducto').val(data.precio);
+                        $('#dProducto').val(data.descripcion);
+                        $('#disProducto').val(data.disponible);
+                        $('#cProducto').val(data.cantidad);
+                        $('#fCreacionProducto').val(data.fecha_creacion);
+                        $('#idC').val(data.Id_categoria);
+                        // Si quieres mostrar la imagen, necesitarás manejarlo aquí
+                    } else {
+                        alert('Producto no encontrado.');
+                    }
+                },
+                error: function() {
+                    alert('Error al buscar el producto.');
+                }
+            });
+        } else {
+            // Limpiar los campos si el ID está vacío
+            $('#nProducto').val('');
+            $('#pProducto').val('');
+            $('#dProducto').val('');
+            $('#disProducto').val('');
+            $('#cProducto').val('');
+            $('#fCreacionProducto').val('');
+            $('#idC').val('');
+        }
+    }
+    </script>
 </body>
 
 </html>

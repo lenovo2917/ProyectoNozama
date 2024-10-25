@@ -113,7 +113,7 @@ foreach ($carrito as $producto) {
 
             <?php } else { ?>
                 <div class="alert alert-warning" role="alert">
-                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a
+                    Tu carrito está vacío. <a href="./main.php" class="text-decoration-none">Empieza a
                         comprar</a>.
                 </div>
             <?php } ?>
@@ -122,5 +122,5 @@ foreach ($carrito as $producto) {
 </main>
 
 <?php
-include '../footer.php';
+include './footer.php';
 ?>
