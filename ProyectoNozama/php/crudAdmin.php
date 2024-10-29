@@ -68,7 +68,7 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Añadir producto:</h5>
+                    <h5 class="card-title">Añadir producto al inventario:</h5>
                     <form action="agProAd.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group mb-3">
                             <label for="nombreProducto">Nombre:</label>
@@ -114,7 +114,7 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Modificar producto:</h5>
+                    <h5 class="card-title">Modificar producto del inventario:</h5>
                     <form action="modProAd.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group mb-3">
                             <label for="idProducto">ID:</label>
@@ -162,16 +162,18 @@
 
         
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-30 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Eliminar producto:</h5>
-                    <div class="form-group mb-3">
-                        <label for="nombreProducto">ID:</label>
-                        <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el ID del producto">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary">Buscar producto</button>
-                    </div>
+                    <h5 class="card-title">Eliminar algún producto</h5>
+                    <form action="eliProdAdmin.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="idDelProducto">ID:</label>
+                            <input type="text" class="form-control" id="idDelProducto" name="idDelProducto" placeholder="Ingresa el ID del producto">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger">Eliminar producto</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -196,10 +198,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
                                 <th>Precio</th>
+                                <th>Descripción</th>
                                 <th>Disponibilidad</th>
+                                <th>Cantidad</th>
                                 <th>Fecha Creación</th>
+                                <th>Categoria</th>
                                 <th>Imagen</th>
                             </tr>
                         </thead>
@@ -298,6 +302,20 @@
             }
         }
     </script>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mensaje1 = urlParams.get('mensaje1');
+
+            if (mensaje1 === 'success') {
+                alert("Producto eliminado correctamente.");
+            } else if (mensaje1 === 'error') {
+                alert("Error al eliminar el producto.");
+            }
+        }
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     function buscarProducto() {
@@ -340,6 +358,36 @@
         }
     }
     </script>
-</body>
 
+    <script>
+        document.querySelectorAll(".btn").forEach(button => {
+    button.addEventListener("click", function() {
+        const categoriaId = this.id.replace('btnTabla', '');
+        fetch(`http://localhost/ProyectoNozama/ProyectoNozama/php/mosProAdmin.php?categoria_id=${categoriaId}`)
+            .then(response => response.json())
+            .then(data => {
+                const tablaContenido = document.getElementById("tablaContenido");
+                tablaContenido.innerHTML = ""; // Limpiar la tabla
+
+                data.forEach(producto => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${producto.Id}</td>
+                        <td>${producto.Nombre}</td>
+                        <td>${producto.precio}</td>
+                        <td>${producto.descripcion}</td>
+                        <td>${producto.disponible == 1 ? 'Disponible' : 'No Disponible'}</td>
+                        <td>${producto.cantidad}</td>
+                        <td>${producto.fecha_creacion}</td>
+                        <td>${producto.Id_categoria}</td>
+                        <td><img src="data:image/jpeg;base64,${producto.imagen}" alt="Imagen Producto" style="width:50px;height:50px;"></td>
+                    `;
+                    tablaContenido.appendChild(fila);
+                });
+            })
+            .catch(error => console.error("Error al cargar los productos:", error));
+    });
+});
+    </script>
+</body>
 </html>
