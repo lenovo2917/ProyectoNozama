@@ -1,6 +1,6 @@
 <?php
 include './header.php';
-session_start();
+
 
 // Obtiene el carrito desde la sesión
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
