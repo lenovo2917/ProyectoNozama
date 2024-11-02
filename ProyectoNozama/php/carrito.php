@@ -1,6 +1,5 @@
 <?php
 include './header.php';
-session_start();
 
 // Obtiene el carrito desde la sesión
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
@@ -39,10 +38,10 @@ foreach ($carrito as $producto) {
                             <tr>
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
-                                        <img src="../img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen del Producto"
+                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['imagen']); ?>" alt="Imagen del Producto"
                                             class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
                                         <div>
-                                            <h5><?php echo $producto['nombre']; ?></h5>
+                                            <h5><?php echo $producto['Nombre']; ?></h5>
                                             <p class="text-muted"><?php echo $producto['descripcion']; ?></p>
                                         </div>
                                     </div>
@@ -113,7 +112,7 @@ foreach ($carrito as $producto) {
 
             <?php } else { ?>
                 <div class="alert alert-warning" role="alert">
-                    Tu carrito está vacío. <a href="carrito_productos.php" class="text-decoration-none">Empieza a
+                    Tu carrito está vacío. <a href="./main.php" class="text-decoration-none">Empieza a
                         comprar</a>.
                 </div>
             <?php } ?>

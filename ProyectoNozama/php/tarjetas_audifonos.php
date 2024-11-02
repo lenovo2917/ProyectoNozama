@@ -3,7 +3,8 @@
 include 'conexion.php'; 
 
 // Consulta para obtener los productos disponibles
-$sql = "SELECT Nombre, descripcion, precio, cantidad, imagen FROM Productos WHERE Id_categoria = 5";
+$sql = "SELECT Id,Nombre, descripcion, precio, cantidad, imagen FROM Productos WHERE Id_categoria = 5";
+
 $resultado = $conn->query($sql);
 
 if ($resultado->num_rows > 0) {
@@ -37,7 +38,7 @@ if ($resultado->num_rows > 0) {
                         <p class="card-text">Cantidad disponible: ' . $producto["cantidad"] . '</p>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-outline-primary w-100">Agregar al carrito</button>
+                        <button class="btn btn-outline-primary w-100" onclick="agregarAlCarrito(' . $producto["Id"] . ')">Agregar al carrito</button>
                     </div>
                 </div>
             </div>';
