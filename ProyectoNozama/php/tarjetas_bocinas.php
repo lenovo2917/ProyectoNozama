@@ -60,7 +60,7 @@ if ($resultado->num_rows > 0) {
     if ($contador % 3 != 0) {
         echo '</div></div>'; // Cerrar fila y carousel-item
     }
-
+    //holi
     echo '</div>';  // Cierre del .carousel-inner
 } else {
     echo "No hay productos disponibles.";
