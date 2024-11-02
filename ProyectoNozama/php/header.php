@@ -61,9 +61,8 @@ session_start();
                         <li class="nav-item">
                             <a class="nav-link position-relative" href="./carrito.php">
                                 <i class="bi bi-cart4 fs-5"></i> Carrito
-                                <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    0
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <?php echo isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['carrito'], 'cantidad')) : 0; ?>
                                     <span class="visually-hidden">productos en carrito</span>
                                 </span>
                             </a>
@@ -112,9 +111,6 @@ session_start();
     </div>
 </div>
 
-
-
-
     <script>
     function buscarProductos(event) {
         event.preventDefault();
@@ -155,8 +151,6 @@ session_start();
 document.getElementById('confirmLogout').addEventListener('click', function() {
     window.location.href = './logout.php';
 });
-
-
     </script>
 </body>
 </html>

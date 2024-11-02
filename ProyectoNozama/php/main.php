@@ -191,4 +191,25 @@
         </div>
     </div>
 </main>
+<script>
+function agregarAlCarrito(productId) {
+    fetch('./agregar_carrito.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Actualizar el contador del carrito
+            document.querySelector('.badge').textContent = data.totalProductos;
+        } else {
+            alert('Error al agregar el producto al carrito.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
 <?php include './footer.php'; ?>

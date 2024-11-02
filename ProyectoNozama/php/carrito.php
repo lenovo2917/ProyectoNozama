@@ -1,7 +1,6 @@
 <?php
 include './header.php';
 
-
 // Obtiene el carrito desde la sesión
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
 $total_productos = 0; // Cambiado para acumular cantidades
@@ -39,10 +38,10 @@ foreach ($carrito as $producto) {
                             <tr>
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
-                                        <img src="../img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen del Producto"
+                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['imagen']); ?>" alt="Imagen del Producto"
                                             class="img-fluid" style="max-width: 100px; height: auto; margin-right: 15px;">
                                         <div>
-                                            <h5><?php echo $producto['nombre']; ?></h5>
+                                            <h5><?php echo $producto['Nombre']; ?></h5>
                                             <p class="text-muted"><?php echo $producto['descripcion']; ?></p>
                                         </div>
                                     </div>
