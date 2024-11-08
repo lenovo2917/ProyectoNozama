@@ -235,3 +235,4 @@ VALUES (CURRENT_TIMESTAMP, 333333, 1, 1, 3);
 --  COnsultar
 Select * from Pedido where Id_Cliente=1;
 
+INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
