@@ -1,7 +1,7 @@
 <?php
 $servidor = "localhost";
-$usuario = "root";  
-$contrasena = ""; 
+$usuario = "rogelio";  
+$contrasena = "ROger1"; 
 $base_de_datos = "Nozama"; 
 
 try {

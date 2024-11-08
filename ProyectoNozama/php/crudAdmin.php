@@ -1,6 +1,9 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>NOZAMA</title>
     <meta charset="UTF-8">
@@ -17,48 +20,44 @@
 
 <body>
     <!--Header-->
-    <header class="container mb-5"> <!-- Usamos 'container' para centrar la barra de navegación -->
+    <header class="container mb-3">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <!-- Logo y nombre de la página -->
                 <a class="navbar-brand d-flex align-items-center" href="#">
-                    <img src="logo.png" alt="NOZAMA Logo" width="40" height="40" class="me-2">
+                    <img src="../img/logo/logo.png" alt="NOZAMA Logo" width="40px" height="40px" class="me-2">
                     <span class="fs-4">NOZAMA</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" 
-                aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Barra de búsqueda -->
-                    <form class="d-flex mx-auto" role="search" style="width: 50%;">
-                        <input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                    </form>
                     
-                    <!-- Iconos de sesión y carrito -->
+
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="bi bi-person-circle fs-5"></i> Iniciar Sesión
-                            </a>
+                        <li class="nav-item dropdown">
+                            <?php if (isset($_SESSION['correo'])): ?>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle fs-5"></i> <?php echo $_SESSION['correo']; ?>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    
+                                    <li><a class="dropdown-item" href="logout.php" id="logout">Cerrar sesión</a></li>
+                                </ul>
+                            <?php else: ?>
+                                <a class="nav-link" href="login.php">
+                                    <i class="bi bi-person-circle fs-5"></i> Iniciar Sesión
+                                </a>
+                            <?php endif; ?>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="#">
-                                <i class="bi bi-cart4 fs-5"></i> Carrito
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    0
-                                    <span class="visually-hidden">productos en carrito</span>
-                                </span>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
-        <hr> 
+    </header>
 
 
     <!--Main o contenido-->
@@ -185,12 +184,12 @@
             <div class="card-body">
                 <h5 class="card-title">Listado de productos</h5>
                 <div class="d-flex flex-wrap justify-content-between mb-3">
-                    <button class="btn btn-primary mb-2" id="btnTabla1">Bocinas</button>
-                    <button class="btn btn-primary mb-2" id="btnTabla2">Cargadores</button>
-                    <button class="btn btn-primary mb-2" id="btnTabla3">Cables</button>
-                    <button class="btn btn-primary mb-2" id="btnTabla4">Baterías</button>
-                    <button class="btn btn-primary mb-2" id="btnTabla5">Audífonos</button>
-                    <button class="btn btn-primary mb-2" id="btnTabla6">Adaptadores</button>
+                    <button class="btn btn-primary mb-2" id="1">Bocinas</button>
+                    <button class="btn btn-primary mb-2" id="2">Cargadores</button>
+                    <button class="btn btn-primary mb-2" id="3">Cables</button>
+                    <button class="btn btn-primary mb-2" id="4">Baterías</button>
+                    <button class="btn btn-primary mb-2" id="5">Audífonos</button>
+                    <button class="btn btn-primary mb-2" id="6">Adaptadores</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -316,78 +315,53 @@
         }
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    function buscarProducto() {
-        var idProducto = $('#idProducto').val();
-        
-        if (idProducto) {
-            $.ajax({
-                type: 'POST',
-                url: 'buscarProducto.php',
-                data: { idProducto: idProducto },
-                dataType: 'json',
-                success: function(data) {
-                    if (data) {
-                        // Rellena los campos del formulario con los datos devueltos
-                        $('#nProducto').val(data.Nombre);
-                        $('#pProducto').val(data.precio);
-                        $('#dProducto').val(data.descripcion);
-                        $('#disProducto').val(data.disponible);
-                        $('#cProducto').val(data.cantidad);
-                        $('#fCreacionProducto').val(data.fecha_creacion);
-                        $('#idC').val(data.Id_categoria);
-                        // Si quieres mostrar la imagen, necesitarás manejarlo aquí
-                    } else {
-                        alert('Producto no encontrado.');
-                    }
-                },
-                error: function() {
-                    alert('Error al buscar el producto.');
-                }
-            });
-        } else {
-            // Limpiar los campos si el ID está vacío
-            $('#nProducto').val('');
-            $('#pProducto').val('');
-            $('#dProducto').val('');
-            $('#disProducto').val('');
-            $('#cProducto').val('');
-            $('#fCreacionProducto').val('');
-            $('#idC').val('');
-        }
-    }
-    </script>
-
-    <script>
-        document.querySelectorAll(".btn").forEach(button => {
-    button.addEventListener("click", function() {
-        const categoriaId = this.id.replace('btnTabla', '');
-        fetch(`http://localhost/ProyectoNozama/ProyectoNozama/php/mosProAdmin.php?categoria_id=${categoriaId}`)
-            .then(response => response.json())
-            .then(data => {
-                const tablaContenido = document.getElementById("tablaContenido");
-                tablaContenido.innerHTML = ""; // Limpiar la tabla
-
-                data.forEach(producto => {
-                    const fila = document.createElement("tr");
-                    fila.innerHTML = `
-                        <td>${producto.Id}</td>
-                        <td>${producto.Nombre}</td>
-                        <td>${producto.precio}</td>
-                        <td>${producto.descripcion}</td>
-                        <td>${producto.disponible == 1 ? 'Disponible' : 'No Disponible'}</td>
-                        <td>${producto.cantidad}</td>
-                        <td>${producto.fecha_creacion}</td>
-                        <td>${producto.Id_categoria}</td>
-                        <td><img src="data:image/jpeg;base64,${producto.imagen}" alt="Imagen Producto" style="width:50px;height:50px;"></td>
-                    `;
-                    tablaContenido.appendChild(fila);
-                });
-            })
-            .catch(error => console.error("Error al cargar los productos:", error));
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("button.btn-primary").forEach(button => {
+        button.addEventListener("click", () => {
+            const categoriaId = button.id;
+            console.log("Botón presionado, Id de categoría:", categoriaId); // Mensaje de depuración
+            fetchProducts(categoriaId);
+        });
     });
 });
-    </script>
+
+function fetchProducts(categoriaId) {
+    fetch(`http://127.0.0.1/ProyectoNozama/ProyectoNozama/php/mosProAdmin.php?categoriaId=${categoriaId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error en la respuesta de la red");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tablaContenido = document.getElementById("tablaContenido");
+            tablaContenido.innerHTML = ""; // Limpiar la tabla antes de agregar nuevos datos
+
+            data.forEach(product => {
+                const row = `
+                    <tr>
+                        <td>${product.Id}</td>
+                        <td>${product.Nombre}</td>
+                        <td>${product.precio}</td>
+                        <td>${product.descripcion}</td>
+                        <td>${product.disponible == 1 ? 'Disponible' : 'No Disponible'}</td>
+                        <td>${product.cantidad}</td>
+                        <td>${product.fecha_creacion}</td>
+                        <td>${product.Id_categoria}</td>
+                        <td><img src="data:image/jpeg;base64,${product.imagen}" width="50" height="50"></td>
+                    </tr>
+                `;
+                tablaContenido.insertAdjacentHTML("beforeend", row); // Añadir fila a la tabla
+            });
+        })
+        .catch(error => console.error("Error al obtener productos:", error));
+}
+</script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 </body>
 </html>

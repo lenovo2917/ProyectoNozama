@@ -13,53 +13,61 @@
         <title>Inicio de Sesión - Nozama</title>
     </head>
     <body>
-        <?php
-        session_start();
-        $conn = new mysqli("localhost", "rogelio", "ROger1", "Nozama");
+    <?php
+    session_start();
+    $conn = new mysqli("localhost", "rogelio", "ROger1", "Nozama");
 
-        if ($conn->connect_error) {
-            die("Conexión fallida: " . $conn->connect_error);
-        }
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (isset($_POST['login'])) {
-                $correo = $_POST['correo'];
-                $contrasena = $_POST['contrasena'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['login'])) {
+            $correo = $_POST['correo'];
+            $contrasena = $_POST['contrasena'];
 
-                $sql = "SELECT * FROM Cliente WHERE Correo='$correo' AND Contrasena='$contrasena'";
-                $result = $conn->query($sql);
+            $sql = "SELECT * FROM Cliente WHERE Correo='$correo' AND Contrasena='$contrasena'";
+            $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    $_SESSION['correo'] = $correo;
-                    header("Location: main.php");
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $_SESSION['correo'] = $correo;
+                $_SESSION['rol'] = $row['Rol']; 
+
+                
+                if ($row['Rol'] == 3) {
+                    header("Location: crudAdmin.php"); 
                 } else {
-                    echo "<p>Correo o contraseña incorrectos</p>";
+                    header("Location: main.php");
                 }
-            } elseif (isset($_POST['register'])) {
-                $nombre = $_POST['nombre'];
-                $direccion = $_POST['direccion'];
-                $telefono = $_POST['telefono'];
-                $genero = $_POST['genero'];
-                $correo = $_POST['correo'];
-                $contrasena = $_POST['contrasena'];
+            } else {
+                echo "<p>Correo o contraseña incorrectos</p>";
+            }
+        } elseif (isset($_POST['register'])) {
+            $nombre = $_POST['nombre'];
+            $direccion = $_POST['direccion'];
+            $telefono = $_POST['telefono'];
+            $genero = $_POST['genero'];
+            $correo = $_POST['correo'];
+            $contrasena = $_POST['contrasena'];
 
-                $sql = "INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('$nombre', '$direccion', '$telefono', '$genero')";
+            $sql = "INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('$nombre', '$direccion', '$telefono', '$genero')";
+            if ($conn->query($sql) === TRUE) {
+                $id_dato = $conn->insert_id;
+                $sql = "INSERT INTO Cliente (Id_dato, Correo, Contrasena, Rol) VALUES ('$id_dato', '$correo', '$contrasena', 0)";
                 if ($conn->query($sql) === TRUE) {
-                    $id_dato = $conn->insert_id;
-                    $sql = "INSERT INTO Cliente (Id_dato, Correo, Contrasena, Rol) VALUES ('$id_dato', '$correo', '$contrasena', 0)";
-                    if ($conn->query($sql) === TRUE) {
-                        echo "<p>Registro exitoso</p>";
-                    } else {
-                        echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
-                    }
+                    echo "<p>Registro exitoso</p>";
                 } else {
                     echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
                 }
+            } else {
+                echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
             }
         }
+    }
+    $conn->close();
+    ?>
 
-        $conn->close();
-        ?>
         <div class="login">
             <div class="login__content">
                 <div class="login__img">
