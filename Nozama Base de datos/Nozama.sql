@@ -237,5 +237,8 @@ describe pedido;
 
 --  COnsultar
 Select * from Pedido where Id_Cliente=1;
-
+Select * from Cliente;
+delete from Cliente where Id_Cliente=1;
+describe cliente;
+INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
 INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
