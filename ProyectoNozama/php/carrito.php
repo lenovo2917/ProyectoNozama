@@ -1,4 +1,4 @@
-<?php
+<?php 
 include './header.php';
 session_start();
 
@@ -13,7 +13,7 @@ foreach ($carrito as $producto) {
     $total_precio += $producto['cantidad'] * $producto['precio'];
 }
 ?>
-
+<!--librería ajax, usarlo para que al agregar productos no actualice la página-->
 <link rel="stylesheet" href="../css/main.css">
 
 <main class="container">
