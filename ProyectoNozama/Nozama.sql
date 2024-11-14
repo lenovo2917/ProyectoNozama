@@ -1,3 +1,4 @@
+-- Active: 1729273691914@@localhost@3306@nozama
 -- DROP DATABASE Nozama;
 
 CREATE DATABASE Nozama;
@@ -14,7 +15,7 @@ FLUSH PRIVILEGES;
 -- Tabla Departamento
 CREATE TABLE Categoria (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(60)
+    nombre VARCHAR(60)  
 );
 
 

@@ -1,14 +1,20 @@
 <?php
 $servidor = "localhost";
-$usuario = "root";  
-$contrasena = "";  
+$usuario = "rogelio";  
+$contrasena = "ROger1"; 
 $base_de_datos = "Nozama"; 
 
-$conn = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
+try {
+    // Crear una nueva conexión a MySQL
+    $conn = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
 
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-} else {
-  
+    // Verificar la conexión
+    if ($conn->connect_error) {
+        throw new Exception("Conexión fallida: " . $conn->connect_error);
+    }
+} catch (Exception $e) {
+    echo '  <div class="alert alert-danger" role="alert">
+    ' . htmlspecialchars($e->getMessage()) . '
+    </div>';
 }
 ?>

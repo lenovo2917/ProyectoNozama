@@ -3,7 +3,7 @@
 include 'conexion.php'; 
 
 // Consulta para obtener los productos disponibles
-$sql = "SELECT Id,Nombre, descripcion, precio, cantidad, imagen FROM Productos WHERE Id_categoria = 3";
+$sql = "SELECT Id, Nombre, descripcion, precio, cantidad, imagen FROM Productos WHERE Id_categoria = 6";
 $resultado = $conn->query($sql);
 
 if ($resultado->num_rows > 0) {

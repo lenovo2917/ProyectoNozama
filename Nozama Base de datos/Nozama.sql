@@ -19,7 +19,6 @@ CREATE TABLE Categoria (
     nombre VARCHAR(60)
 );
 
-
 -- Tabla Productos, con referencia a Departamento
 CREATE TABLE Productos (
     Id INT PRIMARY KEY AUTO_INCREMENT,
@@ -30,9 +29,13 @@ CREATE TABLE Productos (
     cantidad int not null,
     fecha_creacion DATE,
     Id_categoria INT,
+    imagen BLOB NULL,
     FOREIGN KEY (Id_categoria) REFERENCES Categoria(Id),
     CONSTRAINT ck_Disponible CHECK (disponible IN (0,1))
 );
+ALTER TABLE Productos
+ADD COLUMN imagen BLOB NULL;
+
 
 describe pedido;
 -- Añadir columnas adicionales a la tabla Productos, si faltaran
@@ -60,7 +63,7 @@ CREATE TABLE Cliente (
 );
 
 -- Rol 0-Cliente, 1-Empleado, 3-Administrador
-
+select * from productos;
 
 
 -- Tabla Forma_Pago
@@ -235,3 +238,4 @@ describe pedido;
 --  COnsultar
 Select * from Pedido where Id_Cliente=1;
 
+INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
