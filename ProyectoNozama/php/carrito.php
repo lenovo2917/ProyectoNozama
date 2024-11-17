@@ -1,4 +1,4 @@
-<?php
+<?php 
 include './header.php';
 include './conexion.php';
 
@@ -14,23 +14,6 @@ foreach ($carrito as $producto) {
     $total_precio += $producto['cantidad'] * $producto['precio'];
 }
 ?>
-
-<?php
-    // Suponiendo que tienes el ID del cliente en la sesión
-    $id_cliente = $_SESSION['id_cliente'];
-
-    // Consulta los envíos y formas de pago asociadas al cliente
-    $query_envios = "SELECT * FROM Envio WHERE Id_Cliente = $id_cliente";
-    $query_formas_pago = "SELECT * FROM Forma_Pago WHERE Id_Cliente = $id_cliente";
-
-    $result_envios = mysqli_query($conn, $query_envios);
-    $result_formas_pago = mysqli_query($conn, $query_formas_pago);
-
-    $envios = mysqli_fetch_all($result_envios, MYSQLI_ASSOC);
-    $formas_pago = mysqli_fetch_all($result_formas_pago, MYSQLI_ASSOC);
-?>
-
-
 
 <link rel="stylesheet" href="../css/main.css">
 <script src="../js/pago.js" defer></script>

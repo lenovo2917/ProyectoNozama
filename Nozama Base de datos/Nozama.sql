@@ -5,7 +5,9 @@ USE Nozama;
 
 -- crear el usuario, descomentarlo
 -- Usuarios
-CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+ CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+ SELECT User, Host FROM mysql.user WHERE User = 'rogelio';
+
 
 -- Permisos
  GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON Nozama.* TO 'rogelio'@'localhost';
@@ -229,10 +231,14 @@ VALUES (CURRENT_TIMESTAMP, 222222, 1, LAST_INSERT_ID(), 1);
 INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
 VALUES (CURRENT_TIMESTAMP, 333333, 1, 1, 3);
 
+describe pedido;
 
 
 
 --  COnsultar
 Select * from Pedido where Id_Cliente=1;
-
+Select * from Cliente;
+delete from Cliente where Id_Cliente=1;
+describe cliente;
+INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
 INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
