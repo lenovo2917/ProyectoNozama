@@ -1,11 +1,10 @@
 <?php 
-session_start();
 require '../php/conexion.php';
 
 $pedidos = [];
 
 // Obtener el ID 
-if (isset($_GET['Id_Cliente'])) {
+if (isset($_GET['id_cliente'])) {
     $id_cliente = intval($_GET['Id_Cliente']);
 
     // Consulta detalles de todos los pedidos del cliente
@@ -39,5 +38,5 @@ if (isset($_GET['Id_Cliente'])) {
     // Excepciones
 }
 
-$conn->close();
+//$conn->close();
 ?>

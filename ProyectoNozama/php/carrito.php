@@ -1,5 +1,7 @@
 <?php
 include './header.php';
+include './conexion.php';
+
 
 // Obtiene el carrito desde la sesión
 $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
@@ -13,7 +15,25 @@ foreach ($carrito as $producto) {
 }
 ?>
 
+<?php
+    // Suponiendo que tienes el ID del cliente en la sesión
+    $id_cliente = $_SESSION['id_cliente'];
+
+    // Consulta los envíos y formas de pago asociadas al cliente
+    $query_envios = "SELECT * FROM Envio WHERE Id_Cliente = $id_cliente";
+    $query_formas_pago = "SELECT * FROM Forma_Pago WHERE Id_Cliente = $id_cliente";
+
+    $result_envios = mysqli_query($conn, $query_envios);
+    $result_formas_pago = mysqli_query($conn, $query_formas_pago);
+
+    $envios = mysqli_fetch_all($result_envios, MYSQLI_ASSOC);
+    $formas_pago = mysqli_fetch_all($result_formas_pago, MYSQLI_ASSOC);
+?>
+
+
+
 <link rel="stylesheet" href="../css/main.css">
+<script src="../js/pago.js" defer></script>
 
 <main class="container">
     <div class="row">
@@ -88,6 +108,60 @@ foreach ($carrito as $producto) {
                     </tbody>
                 </table>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Selecciona una Dirección de Envío</h5>
+                        <?php if (!empty($envios)) { ?>
+                            <?php foreach ($envios as $envio) { ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="id_envio" id="envio_<?php echo $envio['Id_Envio']; ?>" 
+                                        value="<?php echo $envio['Id_Envio']; ?>">
+                                    <label class="form-check-label" for="envio_<?php echo $envio['Id_Envio']; ?>">
+                                        <?php echo $envio['DireccionEnvio'] . ' (' . $envio['Tipo'] . ')'; ?>
+                                    </label>
+                                </div>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <p>No tienes direcciones de envío. Agrega una nueva:</p>
+                            <form action="agregar_envio.php" method="POST">
+                                <input type="text" name="direccion" placeholder="Dirección" required>
+                                <input type="text" name="cp" placeholder="Código Postal" required>
+                                <input type="text" name="telefono" placeholder="Teléfono" maxlength="10" required>
+                                <input type="text" name="estado" placeholder="Estado" required>
+                                <input type="hidden" name="id_cliente" value="<?php echo $_SESSION['id_cliente']; ?>"> <!-- Si tienes un sistema de sesiones -->
+                                <button type="submit" class="btn btn-primary">Agregar Dirección</button>
+                            </form>
+                        <?php } ?>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Selecciona una Forma de Pago</h5>
+                        <?php if (!empty($formas_pago)) { ?>
+                            <?php foreach ($formas_pago as $pago) { ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="id_forma_pago" id="pago_<?php echo $pago['Id_FormaPago']; ?>" 
+                                        value="<?php echo $pago['Id_FormaPago']; ?>">
+                                    <label class="form-check-label" for="pago_<?php echo $pago['Id_FormaPago']; ?>">
+                                        <?php echo $pago['Banco'] . ' - ' . $pago['No_Tarjeta']; ?>
+                                    </label>
+                                </div>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <p>No tienes formas de pago registradas. Agrega una nueva:</p>
+                            <form action="agregar_forma_pago.php" method="POST">
+                                <input type="text" name="banco" placeholder="Banco" required>
+                                <input type="text" name="no_tarjeta" placeholder="Número de Tarjeta" maxlength="16" required>
+                                <input type="text" name="fecha_vencimiento" placeholder="Fecha de Vencimiento (MM/YY)" required>
+                                <input type="text" name="cvv" placeholder="CVV" maxlength="3" required>
+                                <input type="text" name="nombre_beneficiario" placeholder="Nombre del Beneficiario" required>
+                                <input type="hidden" name="id_cliente" value="<?php echo $id_cliente; ?>"> <!-- Puedes incluir esto como un campo oculto si el id_cliente ya está disponible -->
+                                <button type="submit" class="btn btn-primary">Agregar Forma de Pago</button>
+                            </form>
+                        <?php } ?>
+                    </div>
+                </div>
+
+
                 <!-- Resumen del carrito -->
                 <div class="row">
                     <div class="col-md-6 offset-md-6">
@@ -104,7 +178,14 @@ foreach ($carrito as $producto) {
                                         <span>$<?php echo number_format($total_precio, 2); ?></span>
                                     </li>
                                 </ul>
-                                <a href="#" class="btn btn-primary mt-3 w-100">Proceder al Pago</a>
+                                <!-- Formulario de resumen -->
+                                <form action="procesar_pedido.php" method="POST">
+                                    <input type="hidden" name="total_productos" value="<?php echo $total_productos; ?>">
+                                    <input type="hidden" name="total_precio" value="<?php echo $total_precio; ?>">
+                                    <input type="hidden" name="id_envio" value="">
+                                    <input type="hidden" name="id_forma_pago" value="">
+                                    <button type="submit" id="boton_pago" class="btn btn-primary mt-3 w-100" disabled>Proceder al Pago</button>
+                                </form>
                             </div>
                         </div>
                     </div>
