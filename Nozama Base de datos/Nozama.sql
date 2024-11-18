@@ -242,3 +242,54 @@ delete from Cliente where Id_Cliente=1;
 describe cliente;
 INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
 INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin', 3, 'admin');
+
+
+
+
+---- AGREGAR TODO ESTO -- ADDED BY GUUUUUUUUUUSSSSSSSSSSS
+
+-- AGREGAR TODO ESTO PARA PEDIDOSSSSSSSSSSSSSSSS:
+use nozama;
+-- select * from Cliente where correo="gustavo@gmail.com"
+-- Alter table productos add column imagen BLOB;
+
+-- Elimina constraint y Id_Producto
+alter table carrito drop constraint carrito_ibfk_1;
+alter table carrito drop column Id_Producto;
+alter table carrito drop column Cantidad;
+
+-- En caso que exista
+drop table detalle_carrito;
+-- describe Forma_Pago;
+-- describe Envio;
+-- describe cliente;
+
+-- Para la tabla Envio
+ALTER TABLE Envio
+ADD COLUMN Id_Cliente INT; -- Si la columna no existe
+
+ALTER TABLE Envio
+ADD CONSTRAINT fk_envio_cliente
+FOREIGN KEY (Id_Cliente) REFERENCES cliente(Id_Cliente);
+
+-- Para la tabla Forma_Pago
+ALTER TABLE Forma_Pago
+ADD COLUMN Id_Cliente INT; -- Si la columna no existe
+
+ALTER TABLE Forma_Pago
+ADD CONSTRAINT fk_forma_pago_cliente
+FOREIGN KEY (Id_Cliente) REFERENCES cliente(Id_Cliente);
+
+
+CREATE TABLE detalle_carrito (
+    Id_Detalle INT AUTO_INCREMENT PRIMARY KEY,  				-- Identificador único del detalle
+    Id_Carrito INT NOT NULL,                    -- Referencia al carrito
+    Id_Producto INT NOT NULL,                  -- Referencia al producto
+    Cantidad INT NOT NULL,                     -- Cantidad del producto
+    FOREIGN KEY (Id_Carrito) REFERENCES carrito(Id_Carrito) ON DELETE CASCADE, -- Relación con carrito
+    FOREIGN KEY (Id_Producto) REFERENCES productos(Id));
+
+Alter table detalle_carrito add column precio float;
+
+select * from Envio;
+-- delete from Envio where Id_Cliente=2;
