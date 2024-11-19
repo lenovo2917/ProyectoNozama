@@ -6,7 +6,7 @@
 
         <!-- ===== CSS ===== -->
         <link rel="stylesheet" href="../css/login.css">
-        
+
     
         <!-- ===== BOX ICONS ===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
@@ -14,6 +14,7 @@
         <title>Inicio de Sesión - Nozama</title>
     </head>
     <body>
+        
     <?php
     session_start();
     $conn = new mysqli("localhost", "rogelio", "ROger1", "Nozama");
