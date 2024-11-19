@@ -1,12 +1,13 @@
--- Active: 1729273691914@@localhost@3306@nozama
--- DROP DATABASE Nozama;
+DROP DATABASE Nozama;
 
 CREATE DATABASE Nozama;
 USE Nozama;
 
 -- crear el usuario, descomentarlo
 -- Usuarios
--- CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+ -- CREATE USER 'rogelio'@'localhost' IDENTIFIED BY 'ROger1';
+ SELECT User, Host FROM mysql.user WHERE User = 'rogelio';
+
 
 -- Permisos
  GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON Nozama.* TO 'rogelio'@'localhost';
@@ -15,34 +16,35 @@ FLUSH PRIVILEGES;
 -- Tabla Departamento
 CREATE TABLE Categoria (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(60)  
+    nombre VARCHAR(70)
 );
-
 
 -- Tabla Productos, con referencia a Departamento
 CREATE TABLE Productos (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre VARCHAR(60),
+    Nombre VARCHAR(80),
     precio FLOAT NOT NULL,
-    descripcion VARCHAR(65),
-    disponible INT NOT NULL,
-    cantidad INT NOT NULL,
+    descripcion VARCHAR(105),
+    disponible int not null,
+    cantidad int not null,
     fecha_creacion DATE,
     Id_categoria INT,
-    imagen BLOB,  -- Nueva columna añadida
+    imagen BLOB NULL,
     FOREIGN KEY (Id_categoria) REFERENCES Categoria(Id),
     CONSTRAINT ck_Disponible CHECK (disponible IN (0,1))
 );
+-- ALTER TABLE Productos
+-- ADD COLUMN imagen BLOB NULL;
 
 
-describe pedido;
+-- describe pedido;
 -- Añadir columnas adicionales a la tabla Productos, si faltaran
 
 -- Tabla Datos_Cliente
 CREATE TABLE Datos_Cliente (
     Id_dato INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre VARCHAR(65),
-    Direccion VARCHAR(65),
+    Nombre VARCHAR(80),
+    Direccion VARCHAR(100),
     Telefono VARCHAR(10),
     Genero int not null,
 	CONSTRAINT ck_Genero CHECK (Genero IN (0,1)),
@@ -53,52 +55,61 @@ CREATE TABLE Datos_Cliente (
 CREATE TABLE Cliente (
     Id_Cliente INT PRIMARY KEY AUTO_INCREMENT,
     Id_dato INT,
-    Correo VARCHAR(45) unique,
+    Correo VARCHAR(60) unique,
     Contrasena VARCHAR(20),
     Rol INT NOT NULL,
     FOREIGN KEY (Id_dato) REFERENCES Datos_Cliente(Id_dato),
-	CONSTRAINT ck_Rol CHECK (Rol IN (0,1,3))
+	CONSTRAINT ck_Rol CHECK (Rol IN (0,1,2,3))
 );
 
 -- Rol 0-Cliente, 1-Empleado, 3-Administrador
-
+-- select * from productos;
 
 
 -- Tabla Forma_Pago
 CREATE TABLE Forma_Pago (
     Id_FormaPago INT PRIMARY KEY AUTO_INCREMENT,
-    Banco VARCHAR(45) NOT NULL,
+    Id_Cliente int,
+    Banco VARCHAR(70) NOT NULL,
     No_Tarjeta VARCHAR(16),
     Fecha_Vencimiento VARCHAR(5),
     CVV VARCHAR(3),
     Nombre_beneficiario VARCHAR(45),
 	CONSTRAINT ck_No_Tarjeta CHECK (No_Tarjeta REGEXP '^[0-9]{16}$'),
-    CONSTRAINT ck_CVV CHECK (CVV REGEXP '^[0-9]{3}$')
+    CONSTRAINT ck_CVV CHECK (CVV REGEXP '^[0-9]{3}$'),
+    CONSTRAINT fk_forma_pago FOREIGN KEY (Id_Cliente) REFERENCES cliente(Id_Cliente)
 );
 
 -- Tabla Envio
 CREATE TABLE Envio (
     Id_Envio INT PRIMARY KEY AUTO_INCREMENT,
     Tipo VARCHAR(20),
-    DireccionEnvio VARCHAR(70),
+    Id_Cliente int,
+    DireccionEnvio VARCHAR(100),
     CP VARCHAR(8),
     Telefono VARCHAR(10),
-    Estado VARCHAR(25)
+    Estado VARCHAR(30),
+	CONSTRAINT fk_envio_cliente FOREIGN KEY (Id_Cliente) REFERENCES cliente(Id_Cliente)
 );
 
 -- Tabla Carrito, con referencia a Productos, Forma_Pago y Envio
 CREATE TABLE Carrito (
     Id_Carrito INT PRIMARY KEY AUTO_INCREMENT,
-    Id_Producto INT,
-    Cantidad INT,
     precio FLOAT,
     Id_FormaPago INT,
     Id_Envio INT,
-    FOREIGN KEY (Id_Producto) REFERENCES Productos(Id),
     FOREIGN KEY (Id_FormaPago) REFERENCES Forma_Pago(Id_FormaPago),
     FOREIGN KEY (Id_Envio) REFERENCES Envio(Id_Envio)
 );
 
+CREATE TABLE detalle_carrito (
+    Id_Detalle INT AUTO_INCREMENT PRIMARY KEY,  				-- Identificador único del detalle
+    Id_Carrito INT NOT NULL,                    -- Referencia al carrito
+    Id_Producto INT NOT NULL,                  -- Referencia al producto
+    Cantidad INT NOT NULL,                     -- Cantidad del producto
+    precio float,
+    FOREIGN KEY (Id_Carrito) REFERENCES carrito(Id_Carrito) ON DELETE CASCADE, -- Relación con carrito
+    FOREIGN KEY (Id_Producto) REFERENCES productos(Id));
 
 
 
@@ -112,7 +123,7 @@ CREATE TABLE Pedido (
     estado INT NOT NULL,
     FOREIGN KEY (Id_Cliente) REFERENCES Cliente(Id_Cliente),
     FOREIGN KEY (Id_Carrito) REFERENCES Carrito(Id_Carrito),
-	CONSTRAINT ck_Estado CHECK (estado IN (0,1,3))
+	CONSTRAINT ck_Estado CHECK (estado IN (0,1,2,3))
 ); -- Estado 0:Preparacion/pendiente, 1:En Camino, 3:Finalizado
 
 -- Trigger para validar el precio de Productos
@@ -142,7 +153,7 @@ END;
 //
 
 
-select * from Categoria;
+-- select * from Categoria;
 
 Insert into Categoria (Id,nombre) values (1,"Bocinas");
 Insert into Categoria (Id,nombre) values (2,"Cargadores");
@@ -195,43 +206,15 @@ VALUES ('Cargador Huawei Tipo C', 75, 'Cargador de pared original Huawei, voltaj
 INSERT INTO Productos (Nombre, precio, descripcion, disponible, cantidad, fecha_creacion, Id_categoria)
 VALUES ('Cubo Samsung 35W Tipo C', 130, 'Super rápida, no incluye cable, dispositivos móviles compatibles: Huawei, etc.', 1, 150, '2024-10-01', 2);
 
-
--- Primer cliente
-INSERT INTO Datos_Cliente (Nombre, Direccion, Telefono, Genero) VALUES ('Juan Pérez', 'Jojutla Morelos 62909', '7773933706',1);
-
--- Insertar cliente
-INSERT INTO Cliente (Id_dato, Correo, Rol, Contrasena) VALUES (1, 'juan.perez@gmail.com', 0, 'juan');
-
--- Insertar envio
--- Inserción en la tabla Envio
-INSERT INTO Envio (Tipo, DireccionEnvio, CP, Telefono, Estado) VALUES ('Express', 'Calle Ejemplo 123', '12345', '5551234567', 'En ruta');
--- Hacer un altertable agregando Cliente.ID para referenciar envio al cliente.
-
--- Insercion Pago
--- Inserción en la tabla Forma_Pago
-INSERT INTO Forma_Pago (Banco, No_Tarjeta, Fecha_Vencimiento, CVV, Nombre_beneficiario) 
-VALUES ('BBVA Bancomer', '1234567812345678', '12/25', '123', 'Juan Pérez');
--- Hacer un altertable agregando Cliente.ID para referenciar la forma de pago al cliente.
-
--- Insercion Carrito
--- Inserción en la tabla Carrito
-INSERT INTO Carrito (Id_Producto, Cantidad, Precio, Id_FormaPago, Id_Envio) VALUES (1, 1, 230, 1, LAST_INSERT_ID()); 
-
-Select * from Cliente;
-
--- Inserción en la tabla Pedido
-INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
-VALUES (CURRENT_TIMESTAMP, 200, 1, LAST_INSERT_ID(), 0);
-
-INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
-VALUES (CURRENT_TIMESTAMP, 222222, 1, LAST_INSERT_ID(), 1);
-
-INSERT INTO Pedido (fecha, Total, Id_Cliente, Id_Carrito, estado) 
-VALUES (CURRENT_TIMESTAMP, 333333, 1, 1, 3);
-
+-- describe pedido;
 
 
 
 --  COnsultar
-Select * from Pedido where Id_Cliente=1;
+-- Select * from Pedido where Id_Cliente=1;
+-- Select * from Cliente;
+-- delete from Cliente where Id_Cliente=1;
+-- describe cliente;
+INSERT INTO Cliente (Correo, Rol, Contrasena) VALUES ('admin',3,'admin');
 
+Select * from Cliente;

@@ -50,6 +50,7 @@ session_start();
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="configuracion.php">Configuración de cuenta</a></li>
+                                    <li><a class="dropdown-item" href="pedido.php">Pedidos</a></li>
                                     <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
                                 </ul>
                             <?php else: ?>

@@ -33,6 +33,7 @@
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
+                $_SESSION['id_cliente'] = $row['Id_Cliente'];
                 $_SESSION['correo'] = $correo;
                 $_SESSION['rol'] = $row['Rol']; 
 
