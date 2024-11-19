@@ -27,7 +27,7 @@ CREATE TABLE Productos (
     descripcion VARCHAR(105),
     disponible int not null,
     cantidad int not null,
-    fecha_creacion DATE,
+    fecha_creacion varchar(15),
     Id_categoria INT,
     imagen BLOB NULL,
     FOREIGN KEY (Id_categoria) REFERENCES Categoria(Id),
