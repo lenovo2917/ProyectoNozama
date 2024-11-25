@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo "Producto modificado con éxito";
+        header("Location: crudAdmin.php");
     } else {
         echo "Error al modificar el producto: " . $stmt->error;
     }

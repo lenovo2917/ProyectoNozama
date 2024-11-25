@@ -133,7 +133,7 @@ session_start();
                         </div>
                         <div class="form-group mb-3">
                             <label for="disProducto">Disponibilidad:</label>
-                            <input type="number" class="form-control" id="disProducto" name="disProducto" placeholder="SOLO VALORES 0 Y 1" required>
+                            <input type="number" class="form-control" id="disProducto" name="disProducto" placeholder="Valores de 0 y 1" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="cProducto">Cantidad:</label>
