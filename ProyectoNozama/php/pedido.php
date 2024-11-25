@@ -67,7 +67,7 @@
                     <?php } // Fin del foreach 
                 } else { ?>
                     <div class="alert alert-warning" role="alert">
-                        No se encontraron pedidos para el cliente con ID <?php echo $id_cliente; ?>.
+                        Usted no ha realizado pedidos :C 
                         <a href="./main.php" class="text-decoration-none">Empieza a
                         comprar</a>.
                     </div>
