@@ -72,7 +72,7 @@ session_start();
                     <form action="agProAd.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group mb-3">
                             <label for="nombreProducto">Nombre:</label>
-                            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingresa el nombre" required>
+                            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingresa el nombre del producto" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="precioProducto">Precio:</label>
