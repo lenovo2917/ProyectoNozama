@@ -76,7 +76,7 @@ session_start();
                         </div>
                         <div class="form-group mb-3">
                             <label for="precioProducto">Precio:</label>
-                            <input type="number" class="form-control" id="precioProducto" name="precioProducto" placeholder="Ingresa el precio" required>
+                            <input type="number" class="form-control" id="precioProducto" name="precioProducto" placeholder="Ingresa el precio del producto" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="descripcionProducto">Descripción:</label>
