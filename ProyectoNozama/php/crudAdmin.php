@@ -80,7 +80,7 @@ session_start();
                         </div>
                         <div class="form-group mb-3">
                             <label for="descripcionProducto">Descripción:</label>
-                            <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" rows="3" placeholder="Ingresa la descripción" required></textarea>
+                            <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" rows="3" placeholder="Ingresa la descripción del producto" required></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="disponibilidadProducto">Disponibilidad:</label>
