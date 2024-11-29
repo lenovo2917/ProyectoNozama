@@ -48,35 +48,24 @@
                             <tbody>';
                     foreach ($productos as $producto) {
                         $total_producto = $producto['Precio'] * $producto['Cantidad'];
-                        echo '<tr>';
-                        
-                        // Verifica si la columna 'Imagen' contiene datos binarios o una ruta
-                        if (strpos($producto['Imagen'], '/') !== false) { 
-                            // Es una ruta
-                            echo '<td><img src="' . $producto['Imagen'] . '" 
-                                        alt="' . $producto['ProductoNombre'] . '" 
-                                        class="img-fluid" style="max-width: 100px;"></td>';
-                        } else {
-                            // Es un BLOB
-                            echo '<td><img src="data:image/jpeg;base64,' . base64_encode($producto['Imagen']) . '" 
-                                        alt="' . $producto['ProductoNombre'] . '" 
-                                        class="img-fluid" style="max-width: 100px;"></td>';
-                        }
-                        
-                        echo '<td>' . $producto['ProductoNombre'] . '</td>
-                            <td>' . $producto['Cantidad'] . '</td>
-                            <td>$' . number_format($producto['Precio'], 2) . '</td>
-                            <td>$' . number_format($total_producto, 2) . '</td>
-                            </tr>';
+                        $imagen_base64 = base64_encode($producto['Imagen']); // Codifica la imagen
+                        $tipo_mime = 'image/jpeg'; // Cambia si tu imagen no es JPEG
+                        echo '<tr>
+                                <td><img src="data:' . $tipo_mime . ';base64,' . $imagen_base64 . '" alt="' . $producto['ProductoNombre'] . '" class="img-fluid" style="max-width: 100px;"></td>
+                                <td>' . $producto['ProductoNombre'] . '</td>
+                                <td>' . $producto['Cantidad'] . '</td>
+                                <td>$' . number_format($producto['Precio'], 2) . '</td>
+                                <td>$' . number_format($total_producto, 2) . '</td>
+                              </tr>';
                     }
                     echo '</tbody></table>
-                        <form action="pedido.php" method="get">
-                            <button type="submit" class="btn btn-primary">Volver a Pedidos</button>
-                        </form>';
+                    <form action="pedido.php" method="get">
+                        <button type="submit" class="btn btn-primary">Volver a Pedidos</button>
+                    </form>';
                 } else {
                     echo "<p>No se encontraron productos para este carrito.</p>";
                 }
-                ?>
+            ?>
         </div>
     </div>
 </main>
