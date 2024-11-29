@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Subir la imagen si fue seleccionada
     if (!empty($_FILES['imaProducto']['name'])) {
         $imagenProducto = $_FILES['imaProducto']['tmp_name'];
-        $imagenProductoContenido = addslashes(file_get_contents($imagenProducto));
+        $imagenProductoContenido = addslashes(file_get_contents($imagenProducto)); // CORRECCIÓN
         
         // Preparar la consulta incluyendo la imagen
         $stmt = $conn->prepare("UPDATE Productos SET 
@@ -67,3 +67,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Cerrar la conexión
 $conn->close();
 ?>
+

@@ -360,6 +360,36 @@ function fetchProducts(categoriaId) {
 }
 </script>
 
+<script>
+function buscarProducto() {
+    const idProducto = document.getElementById("idProducto").value;
+
+    if (idProducto) {
+        // Llamada AJAX usando Fetch API
+        fetch(`buscarProducto.php?idProducto=${idProducto}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // Llenar los campos del formulario
+                    document.getElementById("nProducto").value = data.Nombre || "";
+                    document.getElementById("pProducto").value = data.precio || "";
+                    document.getElementById("dProducto").value = data.descripcion || "";
+                    document.getElementById("disProducto").value = data.disponible || "";
+                    document.getElementById("cProducto").value = data.cantidad || "";
+                    document.getElementById("fCreacionProducto").value = data.fecha_creacion || "";
+                    document.getElementById("idC").value = data.Id_categoria || "";
+                }
+            })
+            .catch(error => {
+                console.error("Error al buscar el producto:", error);
+                alert("Error al buscar el producto. Intenta nuevamente.");
+            });
+    }
+}
+</script>
+
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
