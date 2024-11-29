@@ -49,7 +49,7 @@
                     foreach ($productos as $producto) {
                         $total_producto = $producto['Precio'] * $producto['Cantidad'];
                         echo '<tr>
-                                <td><img src="../img/productos/' . $producto['Imagen'] . '" alt="' . $producto['ProductoNombre'] . '" class="img-fluid" style="max-width: 100px;"></td>
+                                <td><img src="../img/productos/' . base64_encode($producto['Imagen']) . '" alt="' . $producto['ProductoNombre'] . '" class="img-fluid" style="max-width: 100px;"></td>
                                 <td>' . $producto['ProductoNombre'] . '</td>
                                 <td>' . $producto['Cantidad'] . '</td>
                                 <td>$' . number_format($producto['Precio'], 2) . '</td>
