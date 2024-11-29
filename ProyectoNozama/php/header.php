@@ -24,7 +24,7 @@ session_start();
     <header class="container mb-3">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="#">
+                <a class="navbar-brand d-flex align-items-center" href="./main.php">
                     <img src="../img/logo/logo.png" alt="NOZAMA Logo" width="40px" height="40px" class="me-2">
                     <span class="fs-4">NOZAMA</span>
                 </a>
@@ -35,41 +35,40 @@ session_start();
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex mx-auto" role="search" style="width: 50%;"
-                        onsubmit="buscarProductos(event)">
+                    <form class="d-flex mx-auto" role="search" style="width: 50%;" action="main.php" method="GET">
                         <input class="form-control me-2" type="search" id="query" name="query"
                             placeholder="Buscar productos o categorías..." aria-label="Search">
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
-
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <?php if (isset($_SESSION['correo'])): ?>
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person-circle fs-5"></i> <?php echo $_SESSION['correo']; ?>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="configuracion.php">Configuración de cuenta</a></li>
-                                    <li><a class="dropdown-item" href="pedido.php">Pedidos</a></li>
-                                    <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
-                                </ul>
-                            <?php else: ?>
-                                <a class="nav-link" href="login.php">
-                                    <i class="bi bi-person-circle fs-5"></i> Iniciar Sesión
-                                </a>
-                            <?php endif; ?>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="./carrito.php">
-                                <i class="bi bi-cart4 fs-5"></i> Carrito
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    <?php echo isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['carrito'], 'cantidad')) : 0; ?>
-                                    <span class="visually-hidden">productos en carrito</span>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <?php if (isset($_SESSION['correo'])): ?>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle fs-5"></i> <?php echo $_SESSION['correo']; ?>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="configuracion.php">Configuración de cuenta</a></li>
+                                <li><a class="dropdown-item" href="pedido.php">Pedidos</a></li>
+                                <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
+                            </ul>
+                        <?php else: ?>
+                            <a class="nav-link" href="login.php">
+                                <i class="bi bi-person-circle fs-5"></i> Iniciar Sesión
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="./carrito.php">
+                            <i class="bi bi-cart4 fs-5"></i> Carrito
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?php echo isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['carrito'], 'cantidad')) : 0; ?>
+                                <span class="visually-hidden">productos en carrito</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -77,17 +76,17 @@ session_start();
     <nav class="navbar nav-underline navbar-expand-lg submenu">
         <div class="container-fluid">
             <ul class="navbar-nav nav-fill w-100 me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#bocinas"><i class="bi bi-speaker fs-5"></i>
+                <li class="nav-item"><a class="nav-link" href="main.php#bocinas"><i class="bi bi-speaker fs-5"></i>
                         Bocinas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#cargadores"><i
-                            class="bi bi-battery-charging fs-5"></i> Cargadores</a></li>
-                <li class="nav-item"><a class="nav-link" href="#cables"><i class="bi bi-bezier fs-5"></i>
+                <li class="nav-item"><a class="nav-link" href="main.php#cargadores"><i
+                        class="bi bi-battery-charging fs-5"></i> Cargadores</a></li>
+                <li class="nav-item"><a class="nav-link" href="main.php#cables"><i class="bi bi-bezier fs-5"></i>
                         Cables</a></li>
-                <li class="nav-item"><a class="nav-link" href="#baterias"><i
-                            class="bi bi-battery-full fs-5"></i> Baterías</a></li>
-                <li class="nav-item"><a class="nav-link" href="#audifonos"><i class="bi bi-headphones fs-5"></i>
+                <li class="nav-item"><a class="nav-link" href="main.php#baterias"><i
+                        class="bi bi-battery-full fs-5"></i> Baterías</a></li>
+                <li class="nav-item"><a class="nav-link" href="main.php#audifonos"><i class="bi bi-headphones fs-5"></i>
                         Audífonos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#adaptadores"><i class="bi bi-plug fs-5"></i>
+                <li class="nav-item"><a class="nav-link" href="main.php#adaptadores"><i class="bi bi-plug fs-5"></i>
                         Adaptadores</a></li>
             </ul>
         </div>
@@ -116,31 +115,7 @@ session_start();
     function buscarProductos(event) {
         event.preventDefault();
         const query = document.getElementById('query').value.toLowerCase();
-        const productos = document.querySelectorAll('.card');
-        let encontrado = false;
-
-        productos.forEach(producto => {
-            const nombre = producto.querySelector('.card-title').textContent.toLowerCase();
-            const descripcion = producto.querySelector('.card-text').textContent.toLowerCase();
-            const categoria = producto.closest('.category-section').id.toLowerCase();
-
-            if (nombre.includes(query) || descripcion.includes(query) || categoria.includes(query)) {
-                if (!encontrado) {
-                    producto.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                    encontrado = true;
-                }
-                producto.style.border = '2px solid grey'; // Resaltar el producto encontrado
-            } else {
-                producto.style.border = 'none'; // Quitar el resaltado de los productos no encontrados
-            }
-        });
-
-        if (!encontrado) {
-            alert('No se encontraron productos que coincidan con la búsqueda.');
-        }
+        window.location.href = `main.php?query=${query}`;
     }
 
     document.getElementById('logout').addEventListener('click', function(event) {

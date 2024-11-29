@@ -4,6 +4,21 @@
 <main class="container">
     <div class="row">
         <div class="col">
+            <?php
+            if (isset($_GET['query'])) {
+                $query = strtolower($_GET['query']);
+                echo "<script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const sections = document.querySelectorAll('section');
+                        sections.forEach(section => {
+                            if (section.id.includes('$query')) {
+                                section.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        });
+                    });
+                </script>";
+            }
+            ?>
             <!-- Carrusel de productos electrónicos -->
             <div id="carouselExampleControls" class="carousel slide mb-5" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -28,8 +43,6 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-
-
 
             <!-- Sección de Beneficios -->
             <section class="container py-5">
@@ -81,11 +94,6 @@
                     </div>
                 </div>
             </section>
-
-
-
-
-
 
             <!-- Sección de Cargadores -->
             <section id="cargadores" class="category-section mb-5">
